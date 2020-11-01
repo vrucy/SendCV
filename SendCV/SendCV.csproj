@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App.ico" />
+  </ItemGroup>
+  
+  <ItemGroup>
+
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
+
+<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
+
+<PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="18.3.0.44" />
+
+<PackageReference Include="Syncfusion.Shared.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.Tools.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.Data.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.SfChart.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.SfDiagram.WPF" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.Themes.Metro.Wpf" Version="18.2.0.44" />
+<PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="18.2.0.44" />
+<PackageReference Include="Unity" Version="5.11.7" />
+</ItemGroup>
+  
+  <ItemGroup>
+    <Resource Include="App.ico" />
+  </ItemGroup>
+</Project>
