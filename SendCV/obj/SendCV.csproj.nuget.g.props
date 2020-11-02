@@ -19,7 +19,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\3.1.9\build\netcoreapp2.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\3.1.9\build\netcoreapp2.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\vrucy\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
     <PkgSyncfusion_Shared_WPF Condition=" '$(PkgSyncfusion_Shared_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.shared.wpf\18.2.0.44</PkgSyncfusion_Shared_WPF>
     <PkgSyncfusion_Tools_WPF Condition=" '$(PkgSyncfusion_Tools_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.tools.wpf\18.2.0.44</PkgSyncfusion_Tools_WPF>
     <PkgSyncfusion_SfTextInputLayout_WPF Condition=" '$(PkgSyncfusion_SfTextInputLayout_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sftextinputlayout.wpf\18.3.0.44</PkgSyncfusion_SfTextInputLayout_WPF>

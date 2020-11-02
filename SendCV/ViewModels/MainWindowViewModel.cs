@@ -1,5 +1,7 @@
 ﻿using SendCV.Command;
+using SendCV.Interface;
 using SendCV.Models;
+using SendCV.Services;
 using SendCV.Views;
 using System.Collections.ObjectModel;
 using System.Printing;
@@ -14,10 +16,13 @@ namespace SendCV.ViewModels
         private ICommand _NavigateToAddCompany;
         private ICommand _NavigateToTable;
         private IUnityContainer _container;
-        public MainWindowViewModel(IUnityContainer container)
+        private IEmailService _emailService;
+
+        public MainWindowViewModel(IUnityContainer container, IEmailService emailService)
         {
             tabcollection = new ObservableCollection<TabModel>();
             _container = container;
+            _emailService = emailService;
             Collection();
         }
 
@@ -51,7 +56,9 @@ namespace SendCV.ViewModels
         }
         public void NavigateToTable(object x)
         {
-
+            var y = _container.Resolve<FileWriter>();
+            //_emailService.SendEmail("test",false,"Test");
+            y.WriteDocuments("Test");
             //_navigationService.NavigateToTableOrders();
         }
         public ICommand _SaveCommand { get; private set; }

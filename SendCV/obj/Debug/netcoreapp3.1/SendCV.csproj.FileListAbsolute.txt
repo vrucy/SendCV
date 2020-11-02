@@ -67,7 +67,13 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win-x
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CoreCompileInputs.cache
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Unity.Abstractions.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Unity.Container.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csprojAssemblyReference.cache
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.Compression.Base.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.DocIO.Base.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.OfficeChart.Base.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.DocToPdfConverter.Base.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.Pdf.Base.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\MailChimp.Net.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CoreCompileInputs.cache
