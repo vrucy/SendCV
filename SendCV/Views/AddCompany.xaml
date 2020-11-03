@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SendCV.Views"
         mc:Ignorable="d"
+        xmlns:my="clr-namespace:SendCV.Enums"
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         Title="AddCompany" Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
@@ -49,7 +50,6 @@
                                NavigationMode="Cell"
                                 ColumnSizer="Star"
                                 SelectionMode="Extended"
-                               SelectedItem="{Binding Company}"
                                AllowEditing="True" 
                                 ShowRowHeader="True">
             <syncfusion:SfDataGrid.Columns>
@@ -63,7 +63,8 @@
                 </syncfusion:GridComboBoxColumn>-->
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
-        <syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendCompanyCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
+        <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedMyEnumType}" ItemsSource="{Binding MyEnumTypeValues}" AllowMultiSelect="False" Grid.Column="1" Grid.Row="1" Margin="0,0,735,0"></syncfusion:ComboBoxAdv>
+        <syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
         <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,10,764,6"/>
     </Grid>
 </Window>

@@ -16,6 +16,6 @@ namespace SendCV.Models
         public DateTime DateEmailSend { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
-        public string NameHR{ get; set; }
-
+        public string NameHR { get; set; }
+    }
 }

@@ -21,11 +21,13 @@ namespace SendCV.Services
             _container = container;
         }
 
-        public void SendEmail(string emailToSend, bool isSendAtt, string companyName )
+        public void SendEmail(string emailToSend,bool isSendAtt, string companyName )
         {
             var companyPath = String.Format("{0}/{1}", rootPath, companyName);
             var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
             var fileReader = _container.Resolve<FileReader>();
+            var fileWriter = _container.Resolve<FileWriter>();
+            fileWriter.WriteDocuments(companyName);
             try
             {
                 MailMessage mail = new MailMessage();
