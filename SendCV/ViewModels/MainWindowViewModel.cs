@@ -58,7 +58,7 @@ namespace SendCV.ViewModels
         {
             var y = _container.Resolve<FileWriter>();
             //_emailService.SendEmail("test",false,"Test");
-            y.WriteDocuments("Test");
+            //y.WriteDocuments("Test");
             //_navigationService.NavigateToTableOrders();
         }
         public ICommand _SaveCommand { get; private set; }

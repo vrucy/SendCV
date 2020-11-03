@@ -7,6 +7,8 @@ using System.IO;
 using Syncfusion.DocIO;
 using System.Collections.Generic;
 using System.IO.Compression;
+using SendCV.Models;
+using Syncfusion.Windows.Shared;
 
 namespace SendCV.Services
 {
@@ -18,20 +20,24 @@ namespace SendCV.Services
         {
 
         }
-        public void WriteDocuments(string companyName)
+        public void WriteDocuments(CompanyCredentials company, bool isSendAtt)
         {
-            pathCompany = String.Format("{0}/{1}", rootWritePath, companyName);
+            pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
             CreateCompanyFolder(pathCompany);
+            WriteTextEmail(company, pathCompany, isSendAtt);
+            WriteCoverLetter(company, pathCompany);
             CopyFile(pathCompany);
-            WriteTextEmail(companyName, "", pathCompany);
-            WriteCoverLetter(companyName, pathCompany);
             ZipFiles(pathCompany);
         }
-        private void WriteCoverLetter(string companyName, string path)
+        private void WriteCoverLetter(CompanyCredentials company, string path)
         {
             WordDocument docToRead = new WordDocument(String.Format("{0}/CoverLetterVladimirVrucinic.docx", rootWritePath));
 
-            docToRead.Replace("{company}", companyName,true,false);
+            docToRead.Replace("{company}", company.Name,true,false);
+            docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy") , true,false);
+            docToRead.Replace("{hrManager}", company.NameHR,true,false);
+            docToRead.Replace("{city}", company.Address,true,false);
+
             DocToPDFConverter converter = new DocToPDFConverter();
             PdfDocument pdfDocument = converter.ConvertToPDF(docToRead);
             pdfDocument.Save(String.Format("{0}/CoverLetterVladimirVrucinic.pdf", path));
@@ -40,14 +46,20 @@ namespace SendCV.Services
             docToRead.Close();
 
         }
-        private void WriteTextEmail(string companyName, string hrManager, string path)
+        private void WriteTextEmail(CompanyCredentials company, string path, bool isSendAtt)
         {
-            WordDocument docToRead = new WordDocument(String.Format("{0}/EmailToSend.docx", rootWritePath));
-            if (String.IsNullOrEmpty(hrManager))
+            var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
+            WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
+            
+            if (String.IsNullOrEmpty(company.NameHR))
             {
                 docToRead.Replace("{hrManager}", String.Empty, true, false);
             }
-            docToRead.Replace("{company}", companyName, true, false);
+            else
+            {
+                docToRead.Replace("{hrManager}", company.NameHR, true, false);
+            }
+            docToRead.Replace("{company}", company.Name, true, false);
             docToRead.Save(String.Format("{0}/EmailToSend.txt", path), FormatType.Txt);
         }
         private void ZipFiles( string path)
@@ -65,8 +77,10 @@ namespace SendCV.Services
         private void CopyFile(string path)
         {
             var sourceFileCV = String.Format("{0}/VladimirVrucinicCV.pdf",rootWritePath);
+            var sourceFileDiplom = String.Format("{0}/VladimirVrucinicDiplom.pdf",rootWritePath);
             var sourceFileRecommendation = String.Format("{0}/VladimirVrucinicRecommendation.pdf", rootWritePath);
             System.IO.File.Copy(sourceFileCV, String.Format("{0}/VladimirVrucinicCV.pdf", path));
+            System.IO.File.Copy(sourceFileDiplom, String.Format("{0}/VladimirVrucinicDiplom.pdf", path));
             System.IO.File.Copy(sourceFileRecommendation, String.Format("{0}/VladimirVrucinicRecommendation.pdf", path));
         }
         private void CreateCompanyFolder(string path)

@@ -39,7 +39,7 @@
             <syncfusion:SfTextInputLayout Hint="Enter company country" Width="210">
                 <TextBox Text="{Binding CompanyCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </syncfusion:SfTextInputLayout>
-            <syncfusion:SfTextInputLayout Hint="Enter company address" Width="210">
+            <syncfusion:SfTextInputLayout Hint="Enter company city" Width="210">
                 <TextBox Text="{Binding CompanyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </syncfusion:SfTextInputLayout>
         </StackPanel>

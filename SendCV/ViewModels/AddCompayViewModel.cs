@@ -97,7 +97,8 @@ namespace SendCV.ViewModels
         private void SendMail(object x)
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
-            companyToSend.ForEach(c => _emailService.SendEmail(c.Email,true,c.Name));
+            var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
+            companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
 
             OnPropertyChanged("Companies");
         }

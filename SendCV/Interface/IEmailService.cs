@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SendCV.Models;
 
 namespace SendCV.Interface
 {
     public interface IEmailService
     {
-        void SendEmail(string emailToSend,bool isatt, string companyName);
+        void SendEmail(CompanyCredentials company, bool isSendAtt);
     }
 }

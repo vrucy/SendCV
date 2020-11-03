@@ -1,4 +1,5 @@
 ﻿using SendCV.Interface;
+using SendCV.Models;
 using System;
 using System.ComponentModel;
 using System.Configuration;
@@ -21,20 +22,20 @@ namespace SendCV.Services
             _container = container;
         }
 
-        public void SendEmail(string emailToSend,bool isSendAtt, string companyName )
+        public void SendEmail(CompanyCredentials company, bool isSendAtt)
         {
-            var companyPath = String.Format("{0}/{1}", rootPath, companyName);
+            var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
             var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
             var fileReader = _container.Resolve<FileReader>();
             var fileWriter = _container.Resolve<FileWriter>();
-            fileWriter.WriteDocuments(companyName);
+            fileWriter.WriteDocuments(company, isSendAtt);
             try
             {
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress(userName);
-                mail.To.Add(emailToSend);
+                mail.To.Add(company.Email);
 
                 mail.Subject = "Job";
                 mail.Body = fileReader.GetEmailText(companyPath);
