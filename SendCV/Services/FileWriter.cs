@@ -13,18 +13,19 @@ namespace SendCV.Services
     public class FileWriter
     {
         private string rootWritePath = ConfigurationManager.AppSettings["rootWritePath"];
+        private string pathCompany { get; set; }
         public FileWriter()
         {
 
         }
         public void WriteDocuments(string companyName)
         {
-            string path = String.Format("{0}/{1}", rootWritePath, companyName);
-            CreateCompanyFolder(path);
-            CopyFile(path);
-            WriteTextEmail(companyName, "",path);
-            WriteCoverLetter(companyName, path);
-            ZipFiles( path);
+            pathCompany = String.Format("{0}/{1}", rootWritePath, companyName);
+            CreateCompanyFolder(pathCompany);
+            CopyFile(pathCompany);
+            WriteTextEmail(companyName, "", pathCompany);
+            WriteCoverLetter(companyName, pathCompany);
+            ZipFiles(pathCompany);
         }
         private void WriteCoverLetter(string companyName, string path)
         {
@@ -51,7 +52,6 @@ namespace SendCV.Services
         }
         private void ZipFiles( string path)
         {
-            
             string[] filePaths = Directory.GetFiles(path, "*.pdf", SearchOption.TopDirectoryOnly);
 
             var zip = ZipFile.Open(String.Format("{0}/VladimirVrucinicDoc.zip",path), ZipArchiveMode.Create);
@@ -71,7 +71,18 @@ namespace SendCV.Services
         }
         private void CreateCompanyFolder(string path)
         {
-            System.IO.Directory.CreateDirectory(path);
+            var companyName = path.Substring(path.LastIndexOf('/') + 1);
+            string[] myDirs = Directory.GetDirectories(rootWritePath, $"{companyName}*", SearchOption.TopDirectoryOnly);
+            if (System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(String.Format("{0}{1}",path,myDirs.Length));
+                pathCompany = String.Format("{0}{1}", path, myDirs.Length);
+            }
+            else
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+
         }
     }
 }

@@ -44,7 +44,7 @@
           "dependencies": {
             "MailChimp.Net.V3": {
               "target": "Package",
-              "version": "[4.2.1, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -66,10 +66,6 @@
               "target": "Package",
               "version": "[3.1.9, )"
             },
-            "Syncfusion.Data.WPF": {
-              "target": "Package",
-              "version": "[18.2.0.44, )"
-            },
             "Syncfusion.DocIO.Wpf": {
               "target": "Package",
               "version": "[18.3.0.44, )"
@@ -84,19 +80,19 @@
             },
             "Syncfusion.SfChart.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.SfDiagram.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.SfGrid.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.SfSkinManager.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.SfTextInputLayout.WPF": {
               "target": "Package",
@@ -104,15 +100,15 @@
             },
             "Syncfusion.Shared.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.Themes.Metro.Wpf": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Syncfusion.Tools.WPF": {
               "target": "Package",
-              "version": "[18.2.0.44, )"
+              "version": "[18.3.0.44, )"
             },
             "Unity": {
               "target": "Package",

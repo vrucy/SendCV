@@ -43,18 +43,27 @@
             </syncfusion:SfTextInputLayout>
         </StackPanel>
             <syncfusion:ButtonAdv Label="Add" Height="29" Grid.Row="3" Width="126" Command="{Binding AddCompanyCommand}"/>
-        <syncfusion:SfDataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Companies, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged}" 
-            SelectedItems="{Binding SelectedItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" SelectionMode="Extended" LiveDataUpdateMode="AllowDataShaping">
+
+        <syncfusion:SfDataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Companies}" 
+            AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"
+                               NavigationMode="Cell"
+                                ColumnSizer="Star"
+                                SelectionMode="Extended"
+                               SelectedItem="{Binding Company}"
+                               AllowEditing="True" 
+                                ShowRowHeader="True">
             <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridCheckBoxSelectorColumn MappingName="Selected" AllowCheckBoxOnHeader="True" />
+                <syncfusion:GridCheckBoxColumn AllowEditing="True" MappingName="Selected" />
                 <syncfusion:GridTextColumn MappingName="Name"/>
                 <syncfusion:GridTextColumn MappingName="Email"/>
-                <syncfusion:GridTextColumn MappingName="Address"/>
+                <syncfusion:GridTextColumn MappingName="Address" />
                 <syncfusion:GridTextColumn MappingName="Country"/>
+                <!--<syncfusion:GridComboBoxColumn>
+                    
+                </syncfusion:GridComboBoxColumn>-->
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
-        <syncfusion:ButtonAdv Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding SendCompanyCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
-        <syncfusion:ButtonAdv Label="Delete" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,10,764,6"/>
+        <syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendCompanyCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
+        <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,10,764,6"/>
     </Grid>
 </Window>
