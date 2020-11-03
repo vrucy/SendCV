@@ -1,5 +1,5 @@
 ﻿SendCV
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\vrucy\source\repos\SendCV\SendCV\App.xaml
 2-1986352923
 
-25-1741925253
+27987586309
 244-505607574
 Views\AddCompany.xaml;Views\MainWindow.xaml;
 
-False
+True
 

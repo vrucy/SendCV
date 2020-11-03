@@ -7,15 +7,9 @@ using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.AccessControl;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Unity;
-using static SendCV.Services.FileReader;
 
 namespace SendCV.ViewModels
 {
@@ -23,11 +17,13 @@ namespace SendCV.ViewModels
     {
         private IEmailService _emailService;
         private IUnityContainer _container;
-        public AddCompayViewModel(IEmailService emailService)
+        private ICompanyRepo _companyRepo;
+        public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo)
         {
             _companies = new ObservableCollection<CompanyCredentials>();
             company = new CompanyCredentials();
             _emailService = emailService;
+            _companyRepo = companyRepo;
         }
         
         private ICommand _NavigateBack;
@@ -83,9 +79,9 @@ namespace SendCV.ViewModels
 
         public void AddCompany(object x)
         {
-            //company.Selected = true;
             _companies.Add(company);
             company = new CompanyCredentials();
+
             OnPropertyChanged("Companies");
         }
         public void DeleteCompany(object x)
@@ -94,11 +90,14 @@ namespace SendCV.ViewModels
             companyToRemove.ForEach(item => Companies.Remove(item));
             OnPropertyChanged("Companies");
         }
+        
         private void SendMail(object x)
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
-            var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
-            companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
+            _companyRepo.SaveCompanies(companyToSend);
+            //_context.CompanyCredentials.AddRange(companyToSend);
+            //var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
+            //companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
 
             OnPropertyChanged("Companies");
         }

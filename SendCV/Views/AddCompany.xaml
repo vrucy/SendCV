@@ -50,11 +50,11 @@
                                NavigationMode="Cell"
                                 ColumnSizer="Star"
                                 SelectionMode="Extended"
-                               AllowEditing="True" 
+                               AllowEditing="True" GridValidationMode="InView"
                                 ShowRowHeader="True">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridCheckBoxColumn AllowEditing="True" MappingName="Selected" />
-                <syncfusion:GridTextColumn MappingName="Name"/>
+                <syncfusion:GridTextColumn GridValidationMode="InView" MappingName="Name"/>
                 <syncfusion:GridTextColumn MappingName="Email"/>
                 <syncfusion:GridTextColumn MappingName="Address" />
                 <syncfusion:GridTextColumn MappingName="Country"/>

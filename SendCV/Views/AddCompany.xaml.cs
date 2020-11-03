@@ -16,6 +16,7 @@ namespace SendCV.Views
             InitializeComponent();
             DataContext = viewModel;
         }
-       
+
+        
     }
 }
