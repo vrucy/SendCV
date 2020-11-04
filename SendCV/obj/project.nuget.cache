@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HG3ON5fYl2/JaPzmJO75kyLaXdDzNa/0AKO9CZkokg1x7zlJc8LRgt+QL6PID+k4F1B9KMGw82OlMfxSlEIN+A==",
+  "dgSpecHash": "ux0UVn8AVlzbDZxIt4oowRB034ChS0EV72kzMRWEDG1mvJOeZzyMtNX6X7Fd27R/0t4DII7uLhNTxaE0Ds0v+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\vrucy\\source\\repos\\SendCV\\SendCV\\SendCV.csproj",
   "expectedPackageFiles": [
@@ -53,6 +53,7 @@
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfchart.wpf\\18.3.0.44\\syncfusion.sfchart.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfdiagram.wpf\\18.3.0.44\\syncfusion.sfdiagram.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfgrid.wpf\\18.3.0.44\\syncfusion.sfgrid.wpf.18.3.0.44.nupkg.sha512",
+    "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfinput.wpf\\18.3.0.44\\syncfusion.sfinput.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfshared.wpf\\18.3.0.44\\syncfusion.sfshared.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sfskinmanager.wpf\\18.3.0.44\\syncfusion.sfskinmanager.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.sftextinputlayout.wpf\\18.3.0.44\\syncfusion.sftextinputlayout.wpf.18.3.0.44.nupkg.sha512",

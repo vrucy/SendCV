@@ -35,6 +35,8 @@
 
 <PackageReference Include="Syncfusion.Pdf.Wpf" Version="18.3.0.44" />
 
+<PackageReference Include="Syncfusion.SfInput.WPF" Version="18.3.0.44" />
+
 <PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="18.3.0.44" />
 
 <PackageReference Include="Syncfusion.Shared.WPF" Version="18.3.0.44" />

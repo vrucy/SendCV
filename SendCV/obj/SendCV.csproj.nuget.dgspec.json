@@ -90,6 +90,10 @@
               "target": "Package",
               "version": "[18.3.0.44, )"
             },
+            "Syncfusion.SfInput.WPF": {
+              "target": "Package",
+              "version": "[18.3.0.44, )"
+            },
             "Syncfusion.SfSkinManager.WPF": {
               "target": "Package",
               "version": "[18.3.0.44, )"

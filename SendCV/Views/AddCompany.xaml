@@ -9,7 +9,7 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         Title="AddCompany" Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
-
+    
     <Grid HorizontalAlignment="Left" Margin="0,0,0,22">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="230"/>
@@ -21,29 +21,57 @@
             <RowDefinition Height="300"/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-
+        
         <syncfusion:ButtonAdv Label="Back" Command="{Binding NavigateBackCommand}"
                              FontSize="10" Grid.Column="0" Margin="0,0,80,10"/>
 
 
-        <StackPanel Grid.Row="2" Margin="0,0,10,-16" Grid.RowSpan="2" >
-            <syncfusion:SfTextInputLayout Hint="Enter name company" Width="210">
-                <TextBox Text="{Binding CompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </syncfusion:SfTextInputLayout>
-            <syncfusion:SfTextInputLayout Hint="Enter email company" Width="210">
-                <TextBox Text="{Binding CompanyEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </syncfusion:SfTextInputLayout>
-            <syncfusion:SfTextInputLayout Hint="Enter name HR" Width="210">
-                <TextBox Text="{Binding CompanyNameHR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </syncfusion:SfTextInputLayout>
-            <syncfusion:SfTextInputLayout Hint="Enter company country" Width="210">
-                <TextBox Text="{Binding CompanyCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </syncfusion:SfTextInputLayout>
-            <syncfusion:SfTextInputLayout Hint="Enter company city" Width="210">
-                <TextBox Text="{Binding CompanyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </syncfusion:SfTextInputLayout>
+        <StackPanel Grid.Row="2" Margin="5,5,10,-16" Grid.RowSpan="2" >
+            <syncfusion:SfMaskedEdit
+                Watermark="Email"
+                Margin="10"
+                 Value="{Binding CompanyEmail, 
+                         Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}" Text="{Binding CompanyEmail}" />
+            <syncfusion:SfMaskedEdit Margin="10"
+                Watermark="CompanyName" Value="{Binding CompanyName,
+                         Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}" Text="{Binding CompanyName}"/>
+            <syncfusion:SfMaskedEdit
+                Margin="10"
+                Text="{Binding CompanyNameHR}"
+                 Watermark="CompanyNameHR"
+                 Value="{Binding CompanyNameHR, 
+                         Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}"/>
+            <syncfusion:SfMaskedEdit
+                Margin="10"
+                Watermark="Country"
+                 Value="{Binding CompanyCountry, 
+                         Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}" Text="{Binding CompanyCountry}" />
+            <syncfusion:SfMaskedEdit
+                Margin="10"
+                Watermark="CompanyAddress"
+                 Value="{Binding CompanyCountry, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="{Binding CompanyAddress}" />
         </StackPanel>
-            <syncfusion:ButtonAdv Label="Add" Height="29" Grid.Row="3" Width="126" Command="{Binding AddCompanyCommand}"/>
+        <Button Content="Add" Height="29" Grid.Row="3" Width="126" Command="{Binding AddCompanyCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Error}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <syncfusion:SfDataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Companies}" 
             AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"

@@ -22,6 +22,7 @@
     <PkgSyncfusion_Shared_WPF Condition=" '$(PkgSyncfusion_Shared_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.shared.wpf\18.3.0.44</PkgSyncfusion_Shared_WPF>
     <PkgSyncfusion_Tools_WPF Condition=" '$(PkgSyncfusion_Tools_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.tools.wpf\18.3.0.44</PkgSyncfusion_Tools_WPF>
     <PkgSyncfusion_SfTextInputLayout_WPF Condition=" '$(PkgSyncfusion_SfTextInputLayout_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sftextinputlayout.wpf\18.3.0.44</PkgSyncfusion_SfTextInputLayout_WPF>
+    <PkgSyncfusion_SfInput_WPF Condition=" '$(PkgSyncfusion_SfInput_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sfinput.wpf\18.3.0.44</PkgSyncfusion_SfInput_WPF>
     <PkgSyncfusion_SfGrid_WPF Condition=" '$(PkgSyncfusion_SfGrid_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sfgrid.wpf\18.3.0.44</PkgSyncfusion_SfGrid_WPF>
     <PkgSyncfusion_SfDiagram_WPF Condition=" '$(PkgSyncfusion_SfDiagram_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sfdiagram.wpf\18.3.0.44</PkgSyncfusion_SfDiagram_WPF>
     <PkgSyncfusion_SfChart_WPF Condition=" '$(PkgSyncfusion_SfChart_WPF)' == '' ">C:\Users\vrucy\.nuget\packages\syncfusion.sfchart.wpf\18.3.0.44</PkgSyncfusion_SfChart_WPF>

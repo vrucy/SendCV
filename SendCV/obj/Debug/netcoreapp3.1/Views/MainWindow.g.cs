@@ -24,6 +24,7 @@ using Syncfusion.UI.Xaml.TextInputLayout;
 using Syncfusion.UI.Xaml.TreeGrid;
 using Syncfusion.UI.Xaml.TreeGrid.Filtering;
 using Syncfusion.Windows;
+using Syncfusion.Windows.Controls.Input;
 using Syncfusion.Windows.Shared;
 using Syncfusion.Windows.Tools;
 using Syncfusion.Windows.Tools.Controls;

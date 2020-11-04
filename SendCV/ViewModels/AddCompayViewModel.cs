@@ -7,13 +7,15 @@ using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Unity;
 
 namespace SendCV.ViewModels
 {
-    public class AddCompayViewModel : BaseViewModel
+    public class AddCompayViewModel : BaseViewModel, IDataErrorInfo
     {
         private IEmailService _emailService;
         private IUnityContainer _container;
@@ -169,6 +171,62 @@ namespace SendCV.ViewModels
             var mainWindow = _container.Resolve<MainWindow>();
             //var mainWindow = new MainWindow();
             mainWindow.Show();
+        }
+        private string _error;
+        public string Error
+        {
+            get => _error;
+
+            set
+            {
+                if (_error != value)
+                {
+                    _error = value;
+                    OnPropertyChanged("Error");
+                }
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                return OnValidate(columnName);
+            }
+        }
+        private string OnValidate(string columnName)
+        {
+            string result = string.Empty;
+            if (columnName == "CompanyName")
+            {
+                if (string.IsNullOrEmpty(CompanyName))
+                {
+                    result = "Name is mandatory";
+                }
+
+            }
+
+            if (columnName == "CompanyEmail")
+            {
+                if (string.IsNullOrEmpty(CompanyEmail))
+                {
+                    result = "Email Required";
+                }
+                else if (!Regex.IsMatch(CompanyEmail, @"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{1,4}"))
+                {
+                    result = "Invalid Email ID";
+                }
+            }
+
+            if (result == "")
+            {
+                Error = null;
+            }
+            else
+            {
+                Error = "Error";
+            }
+            return result;
         }
     }
 }

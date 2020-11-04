@@ -19,6 +19,7 @@
           "Syncfusion.SfChart.WPF": "18.3.0.44",
           "Syncfusion.SfDiagram.WPF": "18.3.0.44",
           "Syncfusion.SfGrid.WPF": "18.3.0.44",
+          "Syncfusion.SfInput.WPF": "18.3.0.44",
           "Syncfusion.SfSkinManager.WPF": "18.3.0.44",
           "Syncfusion.SfTextInputLayout.WPF": "18.3.0.44",
           "Syncfusion.Shared.WPF": "18.3.0.44",
@@ -532,6 +533,18 @@
         },
         "runtime": {
           "lib/netcoreapp3.1/Syncfusion.SfGrid.WPF.dll": {
+            "assemblyVersion": "18.3310.0.44",
+            "fileVersion": "18.3310.0.44"
+          }
+        }
+      },
+      "Syncfusion.SfInput.WPF/18.3.0.44": {
+        "dependencies": {
+          "Syncfusion.Licensing": "18.3.0.44",
+          "Syncfusion.SfShared.WPF": "18.3.0.44"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.SfInput.WPF.dll": {
             "assemblyVersion": "18.3310.0.44",
             "fileVersion": "18.3310.0.44"
           }
@@ -1506,6 +1519,13 @@
       "sha512": "sha512-WOWVLxm0IAbNKLAcfHiwG9+KTDtaWC+wS6xrzAZWgMYKpOAcK3njKmR/L4uSsmJGrZR7YJdRxZe95HiSe+5NOw==",
       "path": "syncfusion.sfgrid.wpf/18.3.0.44",
       "hashPath": "syncfusion.sfgrid.wpf.18.3.0.44.nupkg.sha512"
+    },
+    "Syncfusion.SfInput.WPF/18.3.0.44": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-feefTp4fjRynisFYse4T112r4XlMapQGU2Yz/UMe69boIjEhy587zZtyx4dWLquZtjdzHejzcE2+URdaGWDJeA==",
+      "path": "syncfusion.sfinput.wpf/18.3.0.44",
+      "hashPath": "syncfusion.sfinput.wpf.18.3.0.44.nupkg.sha512"
     },
     "Syncfusion.SfShared.WPF/18.3.0.44": {
       "type": "package",
