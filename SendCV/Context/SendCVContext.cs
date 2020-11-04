@@ -19,7 +19,11 @@ namespace SendCV.Context
         {
             //TODO: read from config
             //var x = ConfigurationManager.ConnectionStrings["SendCvContext"].ConnectionString;
+#if Debug
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SendCvDBTest;Trusted_Connection=True;MultipleActiveResultSets=true");
+#endif
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SendCvDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
     }
 }
