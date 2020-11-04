@@ -43,11 +43,17 @@ namespace SendCV.Models
             {
                 var x = _context.CompanyCredentials.Where(c=>c.Name == this.Name).OrderByDescending(y=>y.DateEmailSend).FirstOrDefault();
                 var countCompany = _context.CompanyCredentials.Where(c => c.Name == this.Name).Count();
+
+                if (x != null)
+                {
+                    if (this.Name.Equals(x.Name))
+                        return "You send email this company: " + countCompany + ".\n Last time:" + x.DateEmailSend;
+                }
+
                 if (!columnName.Equals("Name"))
                     return string.Empty;
 
-                if (this.Name.Equals(x.Name) )
-                    return "You send email this company: " + countCompany + ".\n Last time:" + x.DateEmailSend;
+                
 
                 return string.Empty;
             }

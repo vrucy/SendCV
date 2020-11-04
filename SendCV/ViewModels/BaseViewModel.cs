@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace SendCV.ViewModels
@@ -8,7 +10,8 @@ namespace SendCV.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         bool isBusy = false;
-        public bool IsBusy
+		
+		public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
@@ -33,9 +36,9 @@ namespace SendCV.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+		
+		#region INotifyPropertyChanged
+		public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -45,5 +48,6 @@ namespace SendCV.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
     }
 }

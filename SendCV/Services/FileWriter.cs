@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using SendCV.Models;
 using Syncfusion.Windows.Shared;
+using SendCV.Extensions;
 
 namespace SendCV.Services
 {
@@ -35,7 +36,8 @@ namespace SendCV.Services
 
             docToRead.Replace("{company}", company.Name,true,false);
             docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy") , true,false);
-            docToRead.Replace("{hrManager}", company.NameHR,true,false);
+            docToRead.HrManager(company.NameHR);
+
             docToRead.Replace("{city}", company.Address,true,false);
 
             DocToPDFConverter converter = new DocToPDFConverter();
@@ -50,15 +52,9 @@ namespace SendCV.Services
         {
             var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
+            //TODO: uraditi za sve jednu metodu koja radi ovo ispod za writeCoverLetter 
+            docToRead.HrManager(company.NameHR);
             
-            if (String.IsNullOrEmpty(company.NameHR))
-            {
-                docToRead.Replace("{hrManager}", String.Empty, true, false);
-            }
-            else
-            {
-                docToRead.Replace("{hrManager}", company.NameHR, true, false);
-            }
             docToRead.Replace("{company}", company.Name, true, false);
             docToRead.Save(String.Format("{0}/EmailToSend.txt", path), FormatType.Txt);
         }

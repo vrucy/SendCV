@@ -80,8 +80,13 @@ namespace SendCV.ViewModels
         public void AddCompany(object x)
         {
             _companies.Add(company);
+           // company = null;
             company = new CompanyCredentials();
-
+            OnPropertyChanged("CompanyName");
+            OnPropertyChanged("CompanyEmail");
+            OnPropertyChanged("CompanyAddress");
+            OnPropertyChanged("CompanyCountry");
+            OnPropertyChanged("CompanyNameHR");
             OnPropertyChanged("Companies");
         }
         public void DeleteCompany(object x)
@@ -95,10 +100,10 @@ namespace SendCV.ViewModels
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
             _companyRepo.SaveCompanies(companyToSend);
-            //_context.CompanyCredentials.AddRange(companyToSend);
-            //var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
-            //companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
 
+            var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
+            companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
+            companyToSend.ForEach(c => Companies.Remove(c));
             OnPropertyChanged("Companies");
         }
         public string CompanyName
