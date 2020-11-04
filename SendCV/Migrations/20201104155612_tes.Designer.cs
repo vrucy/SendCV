@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SendCV.Context;
 
 namespace SendCV.Migrations
 {
     [DbContext(typeof(SendCVContext))]
-    partial class SendCVContextModelSnapshot : ModelSnapshot
+    [Migration("20201104155612_tes")]
+    partial class tes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,16 +31,18 @@ namespace SendCV.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyCredentialsId")
+                    b.Property<int?>("CompanyCredentialsId")
                         .HasColumnType("int");
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyCredentialsId")
-                        .IsUnique();
+                    b.HasIndex("CompanyCredentialsId");
 
                     b.ToTable("CompanyAddresses");
                 });
@@ -49,6 +53,12 @@ namespace SendCV.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateEmailSend")
                         .HasColumnType("datetime2");
@@ -73,10 +83,8 @@ namespace SendCV.Migrations
             modelBuilder.Entity("SendCV.Models.CompanyAddress", b =>
                 {
                     b.HasOne("SendCV.Models.CompanyCredentials", "CompanyCredentials")
-                        .WithOne("CompanyAddress")
-                        .HasForeignKey("SendCV.Models.CompanyAddress", "CompanyCredentialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("CompanyCredentialsId");
                 });
 #pragma warning restore 612, 618
         }

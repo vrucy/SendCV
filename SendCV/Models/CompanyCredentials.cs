@@ -21,10 +21,10 @@ namespace SendCV.Models
         public bool Selected { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public DateTime DateEmailSend { get; set; }
-        public string Address { get; set; }
-        public string Country { get; set; }
         public string NameHR { get; set; }
+        public DateTime DateEmailSend { get; set; }
+        public CompanyAddress CompanyAddress { get; set; }
+        
         public string Error
         {
             get

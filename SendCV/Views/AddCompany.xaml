@@ -84,15 +84,32 @@
                 <syncfusion:GridCheckBoxColumn AllowEditing="True" MappingName="Selected" />
                 <syncfusion:GridTextColumn GridValidationMode="InView" MappingName="Name"/>
                 <syncfusion:GridTextColumn MappingName="Email"/>
-                <syncfusion:GridTextColumn MappingName="Address" />
-                <syncfusion:GridTextColumn MappingName="Country"/>
+                <syncfusion:GridTextColumn MappingName="CompanyAddress.Address" />
+                <syncfusion:GridTextColumn MappingName="CompanyAddress.Country"/>
                 <!--<syncfusion:GridComboBoxColumn>
                     
                 </syncfusion:GridComboBoxColumn>-->
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
-        <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedMyEnumType}" ItemsSource="{Binding MyEnumTypeValues}" AllowMultiSelect="False" Grid.Column="1" Grid.Row="1" Margin="0,0,735,0"></syncfusion:ComboBoxAdv>
-        <syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
+        
+        <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedMyEnumType,  Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}" ItemsSource="{Binding MyEnumTypeValues}"
+                                AllowMultiSelect="False" 
+                               x:Name="SendButton" Grid.Column="1" Grid.Row="1" Margin="0,0,735,0"></syncfusion:ComboBoxAdv>
+        <!--<syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>-->
+        <Button Content="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Error}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,10,764,6"/>
     </Grid>
 </Window>

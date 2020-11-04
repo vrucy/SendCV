@@ -20,10 +20,14 @@ namespace SendCV.ViewModels
         private IEmailService _emailService;
         private IUnityContainer _container;
         private ICompanyRepo _companyRepo;
+        CompanyCredentials company ;
+        CompanyAddress c ;
+        
         public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo)
         {
             _companies = new ObservableCollection<CompanyCredentials>();
             company = new CompanyCredentials();
+            company.CompanyAddress = new CompanyAddress();
             _emailService = emailService;
             _companyRepo = companyRepo;
         }
@@ -82,8 +86,9 @@ namespace SendCV.ViewModels
         public void AddCompany(object x)
         {
             _companies.Add(company);
-           // company = null;
             company = new CompanyCredentials();
+            company.CompanyAddress = new CompanyAddress();
+
             OnPropertyChanged("CompanyName");
             OnPropertyChanged("CompanyEmail");
             OnPropertyChanged("CompanyAddress");
@@ -110,7 +115,12 @@ namespace SendCV.ViewModels
         }
         public string CompanyName
         {
-            get { return company.Name; }
+            get
+            {
+                if (company.Name == null)
+                {
+                    return null;
+                } return company.Name; }
             set { company.Name = value; OnPropertyChanged("CompanyName"); }
         }
 
@@ -121,13 +131,13 @@ namespace SendCV.ViewModels
         }
         public string CompanyAddress
         {
-            get { return company.Address; }
-            set { company.Address = value; OnPropertyChanged("CompanyAddress"); }
+            get { return company.CompanyAddress.Address; }
+            set { company.CompanyAddress.Address = value; OnPropertyChanged("CompanyAddress"); }
         }
         public string CompanyCountry
         {
-            get { return company.Country; }
-            set { company.Country = value; OnPropertyChanged("CompanyCountry"); }
+            get { return company.CompanyAddress.Country; }
+            set { company.CompanyAddress.Country = value; OnPropertyChanged("CompanyCountry"); }
         }
         public string CompanyNameHR
         {
@@ -144,6 +154,20 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("SelectedMyEnumType");
             }
         }
+        private string _error;
+        public string Error
+        {
+            get => _error;
+
+            set
+            {
+                if (_error != value)
+                {
+                    _error = value;
+                    OnPropertyChanged("Error");
+                }
+            }
+        }
 
         public IEnumerable<TypeEmail> MyEnumTypeValues
         {
@@ -152,7 +176,7 @@ namespace SendCV.ViewModels
                 return Enum.GetValues(typeof(TypeEmail)).Cast<TypeEmail>();
             }
         }
-        CompanyCredentials company;
+       // CompanyCredentials company;
         ObservableCollection<CompanyCredentials> _companies;
 
         public ObservableCollection<CompanyCredentials> Companies
@@ -172,20 +196,7 @@ namespace SendCV.ViewModels
             //var mainWindow = new MainWindow();
             mainWindow.Show();
         }
-        private string _error;
-        public string Error
-        {
-            get => _error;
-
-            set
-            {
-                if (_error != value)
-                {
-                    _error = value;
-                    OnPropertyChanged("Error");
-                }
-            }
-        }
+        
 
         public string this[string columnName]
         {
@@ -217,7 +228,14 @@ namespace SendCV.ViewModels
                     result = "Invalid Email ID";
                 }
             }
-
+            //TODO: need and in _copanies not empty
+            if (columnName == "SelectedMyEnumType")
+            {
+                if (string.IsNullOrEmpty(SelectedMyEnumType))
+                {
+                    result = "Combobox is required";
+                }
+            }
             if (result == "")
             {
                 Error = null;

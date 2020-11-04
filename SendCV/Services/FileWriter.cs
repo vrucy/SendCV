@@ -38,7 +38,7 @@ namespace SendCV.Services
             docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy") , true,false);
             docToRead.HrManager(company.NameHR);
 
-            docToRead.Replace("{city}", company.Address,true,false);
+            docToRead.Replace("{city}", company.CompanyAddress.Address,true,false);
 
             DocToPDFConverter converter = new DocToPDFConverter();
             PdfDocument pdfDocument = converter.ConvertToPDF(docToRead);
