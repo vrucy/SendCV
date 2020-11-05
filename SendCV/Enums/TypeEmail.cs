@@ -2,8 +2,7 @@
 {
     public enum TypeEmail
     {
-        WithoutAd,
-        FromAd,
+        JobFromAd,
         OnlyEmail
     }
 }

@@ -20,9 +20,9 @@ namespace SendCV.ViewModels
         private IEmailService _emailService;
         private IUnityContainer _container;
         private ICompanyRepo _companyRepo;
-        CompanyCredentials company ;
-        CompanyAddress c ;
-        
+        CompanyCredentials company;
+        CompanyAddress c;
+
         public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo)
         {
             _companies = new ObservableCollection<CompanyCredentials>();
@@ -31,7 +31,7 @@ namespace SendCV.ViewModels
             _emailService = emailService;
             _companyRepo = companyRepo;
         }
-        
+
         private ICommand _NavigateBack;
         private ICommand _AddCompany;
         private ICommand _DeleteCompany;
@@ -58,7 +58,7 @@ namespace SendCV.ViewModels
                 return _SendMail;
             }
         }
-        
+
         public ICommand NavigateBackCommand
         {
             get
@@ -81,15 +81,18 @@ namespace SendCV.ViewModels
                 return _AddCompany;
             }
         }
-        
+
 
         public void AddCompany(object x)
         {
+            company.SelectedTypeEmail = SelectedTypeEmail;
             _companies.Add(company);
             company = new CompanyCredentials();
             company.CompanyAddress = new CompanyAddress();
-
+            SelectedTypeEmail = null;
+            OnPropertyChanged("SelectedTypeEmail");
             OnPropertyChanged("CompanyName");
+            OnPropertyChanged("CompanyCity");
             OnPropertyChanged("CompanyEmail");
             OnPropertyChanged("CompanyAddress");
             OnPropertyChanged("CompanyCountry");
@@ -102,15 +105,18 @@ namespace SendCV.ViewModels
             companyToRemove.ForEach(item => Companies.Remove(item));
             OnPropertyChanged("Companies");
         }
-        
+
         private void SendMail(object x)
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
             _companyRepo.SaveCompanies(companyToSend);
-
-            var sendAtt = SelectedMyEnumType.Equals("OnlyEmail") ? false : true;
-            companyToSend.ForEach(c => _emailService.SendEmail(c, sendAtt));
-            companyToSend.ForEach(c => Companies.Remove(c));
+            foreach (var item in companyToSend)
+            {
+                var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
+                _emailService.SendEmail(item, sendAtt);
+                Companies.Remove(item);
+            }
+            
             OnPropertyChanged("Companies");
         }
         public string CompanyName
@@ -120,7 +126,9 @@ namespace SendCV.ViewModels
                 if (company.Name == null)
                 {
                     return null;
-                } return company.Name; }
+                }
+                return company.Name;
+            }
             set { company.Name = value; OnPropertyChanged("CompanyName"); }
         }
 
@@ -145,15 +153,22 @@ namespace SendCV.ViewModels
             set { company.NameHR = value; OnPropertyChanged("CompanyNameHR"); }
         }
         private string _selectedMyEnumType;
-        public string SelectedMyEnumType
+        public string SelectedTypeEmail
         {
             get { return _selectedMyEnumType; }
             set
             {
                 _selectedMyEnumType = value;
-                OnPropertyChanged("SelectedMyEnumType");
+                OnPropertyChanged("SelectedTypeEmail");
             }
         }
+        
+        public string CompanyCity
+        {
+            get { return company.CompanyAddress.City; }
+            set { company.CompanyAddress.City = value; OnPropertyChanged("CompanyCity"); }
+}
+
         private string _error;
         public string Error
         {
@@ -163,20 +178,21 @@ namespace SendCV.ViewModels
             {
                 if (_error != value)
                 {
+
                     _error = value;
                     OnPropertyChanged("Error");
                 }
             }
         }
 
-        public IEnumerable<TypeEmail> MyEnumTypeValues
+        public IEnumerable<TypeEmail> TypesForSendEmail
         {
             get
             {
                 return Enum.GetValues(typeof(TypeEmail)).Cast<TypeEmail>();
             }
         }
-       // CompanyCredentials company;
+        // CompanyCredentials company;
         ObservableCollection<CompanyCredentials> _companies;
 
         public ObservableCollection<CompanyCredentials> Companies
@@ -185,7 +201,7 @@ namespace SendCV.ViewModels
             set
             {
                 _companies = value;
-
+                
                 OnPropertyChanged("Companies");
             }
         }
@@ -196,12 +212,24 @@ namespace SendCV.ViewModels
             //var mainWindow = new MainWindow();
             mainWindow.Show();
         }
-        
 
+        Dictionary<string, string> dicError = new Dictionary<string, string>();
+        Dictionary<string,bool> dicErrorSend = new Dictionary<string, bool>();
+        
         public string this[string columnName]
         {
             get
-            {
+            {                
+                    if (!String.IsNullOrEmpty(OnValidate(columnName)) && !dicError.ContainsKey(columnName))
+                    {
+                        dicError.Add(columnName, OnValidate(columnName));
+                    }
+                    else if (String.IsNullOrEmpty(OnValidate(columnName)))
+                    {
+                        dicError.Remove(columnName);
+                    }
+                
+
                 return OnValidate(columnName);
             }
         }
@@ -229,14 +257,15 @@ namespace SendCV.ViewModels
                 }
             }
             //TODO: need and in _copanies not empty
-            if (columnName == "SelectedMyEnumType")
+            if (columnName == "SelectedTypeEmail")
             {
-                if (string.IsNullOrEmpty(SelectedMyEnumType))
+                if (string.IsNullOrEmpty(SelectedTypeEmail))
                 {
                     result = "Combobox is required";
                 }
             }
-            if (result == "")
+            
+            if (dicError.Count == 0)
             {
                 Error = null;
             }
@@ -244,6 +273,7 @@ namespace SendCV.ViewModels
             {
                 Error = "Error";
             }
+
             return result;
         }
     }

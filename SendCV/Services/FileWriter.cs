@@ -26,24 +26,27 @@ namespace SendCV.Services
             pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
             CreateCompanyFolder(pathCompany);
             WriteTextEmail(company, pathCompany, isSendAtt);
+
             WriteCoverLetter(company, pathCompany);
             CopyFile(pathCompany);
             ZipFiles(pathCompany);
+
         }
         private void WriteCoverLetter(CompanyCredentials company, string path)
         {
             WordDocument docToRead = new WordDocument(String.Format("{0}/CoverLetterVladimirVrucinic.docx", rootWritePath));
 
-            docToRead.Replace("{company}", company.Name,true,false);
-            docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy") , true,false);
+            docToRead.Replace("{company}", company.Name, true, false);
+            docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy"), true, false);
             docToRead.HrManager(company.NameHR);
 
-            docToRead.Replace("{city}", company.CompanyAddress.Address,true,false);
+            docToRead.Replace("{city}", company.CompanyAddress.City, true, false);
+            docToRead.Replace("{address}", company.CompanyAddress.Address, true, false);
 
             DocToPDFConverter converter = new DocToPDFConverter();
             PdfDocument pdfDocument = converter.ConvertToPDF(docToRead);
             pdfDocument.Save(String.Format("{0}/CoverLetterVladimirVrucinic.pdf", path));
-            
+
             pdfDocument.Close(true);
             docToRead.Close();
 
@@ -54,26 +57,26 @@ namespace SendCV.Services
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
             //TODO: uraditi za sve jednu metodu koja radi ovo ispod za writeCoverLetter 
             docToRead.HrManager(company.NameHR);
-            
+
             docToRead.Replace("{company}", company.Name, true, false);
+            docToRead.Replace("{country}", company.CompanyAddress.Country, true, false);
             docToRead.Save(String.Format("{0}/EmailToSend.txt", path), FormatType.Txt);
         }
-        private void ZipFiles( string path)
+        private void ZipFiles(string path)
         {
             string[] filePaths = Directory.GetFiles(path, "*.pdf", SearchOption.TopDirectoryOnly);
 
-            var zip = ZipFile.Open(String.Format("{0}/VladimirVrucinicDoc.zip",path), ZipArchiveMode.Create);
+            var zip = ZipFile.Open(String.Format("{0}/VladimirVrucinicDoc.zip", path), ZipArchiveMode.Create);
             foreach (var file in filePaths)
             {
-                
                 zip.CreateEntryFromFile(file, Path.GetFileName(file));
             }
             zip.Dispose();
         }
         private void CopyFile(string path)
         {
-            var sourceFileCV = String.Format("{0}/VladimirVrucinicCV.pdf",rootWritePath);
-            var sourceFileDiplom = String.Format("{0}/VladimirVrucinicDiplom.pdf",rootWritePath);
+            var sourceFileCV = String.Format("{0}/VladimirVrucinicCV.pdf", rootWritePath);
+            var sourceFileDiplom = String.Format("{0}/VladimirVrucinicDiplom.pdf", rootWritePath);
             var sourceFileRecommendation = String.Format("{0}/VladimirVrucinicRecommendation.pdf", rootWritePath);
             System.IO.File.Copy(sourceFileCV, String.Format("{0}/VladimirVrucinicCV.pdf", path));
             System.IO.File.Copy(sourceFileDiplom, String.Format("{0}/VladimirVrucinicDiplom.pdf", path));
@@ -85,7 +88,7 @@ namespace SendCV.Services
             string[] myDirs = Directory.GetDirectories(rootWritePath, $"{companyName}*", SearchOption.TopDirectoryOnly);
             if (System.IO.Directory.Exists(path))
             {
-                System.IO.Directory.CreateDirectory(String.Format("{0}{1}",path,myDirs.Length));
+                System.IO.Directory.CreateDirectory(String.Format("{0}{1}", path, myDirs.Length));
                 pathCompany = String.Format("{0}{1}", path, myDirs.Length);
             }
             else

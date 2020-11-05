@@ -56,12 +56,22 @@
                          ValidatesOnDataErrors=True}" Text="{Binding CompanyCountry}" />
             <syncfusion:SfMaskedEdit
                 Margin="10"
-                Watermark="CompanyAddress"
+                Text="{Binding CompanyCity}"
+                 Watermark="Company City"
+                 Value="{Binding CompanyCity, 
+                         Mode=TwoWay, NotifyOnValidationError=True,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True}"/>
+
+            <syncfusion:SfMaskedEdit
+                Margin="10"
+                Watermark="Company Address"
                  Value="{Binding CompanyCountry, Mode=TwoWay, NotifyOnValidationError=True,
                 UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="{Binding CompanyAddress}" />
-            <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedMyEnumType,  Mode=TwoWay, NotifyOnValidationError=True,
+            
+            <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedTypeEmail,  Mode=TwoWay, NotifyOnValidationError=True,
                          UpdateSourceTrigger=PropertyChanged,
-                         ValidatesOnDataErrors=True}" ItemsSource="{Binding MyEnumTypeValues}"
+                         ValidatesOnDataErrors=True}" ItemsSource="{Binding TypesForSendEmail}"
                                 AllowMultiSelect="False" 
                                x:Name="SendButton" Height="35" Width="175" ></syncfusion:ComboBoxAdv>
         </StackPanel>
@@ -87,7 +97,7 @@
                                AllowEditing="True" GridValidationMode="InView"
                                 ShowRowHeader="True">
             <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridCheckBoxColumn AllowEditing="True" MappingName="Selected" />
+                <syncfusion:GridCheckBoxColumn AllowEditing="True" MappingName="Selected"  GridValidationMode="InView"/>
                 <syncfusion:GridTextColumn GridValidationMode="InView" MappingName="Name"/>
                 <syncfusion:GridTextColumn HeaderText="Email" MappingName="Email"/>
                 <syncfusion:GridTextColumn HeaderText="Address" MappingName="CompanyAddress.Address" />

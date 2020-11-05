@@ -114,6 +114,10 @@
               "target": "Package",
               "version": "[18.3.0.44, )"
             },
+            "System.Collections": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Unity": {
               "target": "Package",
               "version": "[5.11.7, )"

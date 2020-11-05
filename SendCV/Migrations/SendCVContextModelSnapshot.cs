@@ -29,6 +29,9 @@ namespace SendCV.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CompanyCredentialsId")
                         .HasColumnType("int");
 

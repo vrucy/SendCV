@@ -705,7 +705,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.dll": {}
         }
       },
       "System.Collections.Concurrent/4.3.0": {
@@ -1189,7 +1189,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
       "System.Runtime.Caching/4.5.0": {
@@ -6237,6 +6237,7 @@
       "Syncfusion.Shared.WPF >= 18.3.0.44",
       "Syncfusion.Themes.Metro.Wpf >= 18.3.0.44",
       "Syncfusion.Tools.WPF >= 18.3.0.44",
+      "System.Collections >= 4.3.0",
       "Unity >= 5.11.7"
     ]
   },
@@ -6353,6 +6354,10 @@
           "Syncfusion.Tools.WPF": {
             "target": "Package",
             "version": "[18.3.0.44, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           },
           "Unity": {
             "target": "Package",

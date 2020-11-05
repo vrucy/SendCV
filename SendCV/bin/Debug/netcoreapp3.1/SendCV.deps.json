@@ -25,6 +25,7 @@
           "Syncfusion.Shared.WPF": "18.3.0.44",
           "Syncfusion.Themes.Metro.WPF": "18.3.0.44",
           "Syncfusion.Tools.WPF": "18.3.0.44",
+          "System.Collections": "4.3.0",
           "Unity": "5.11.7"
         },
         "runtime": {

@@ -3,6 +3,7 @@ using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Unity;
 
@@ -24,7 +25,9 @@ namespace SendCV.Models
         public string NameHR { get; set; }
         public DateTime DateEmailSend { get; set; }
         public CompanyAddress CompanyAddress { get; set; }
-        
+        [NotMapped]
+        public string SelectedTypeEmail { get; set; }
+
         public string Error
         {
             get
@@ -49,11 +52,9 @@ namespace SendCV.Models
                             return "You send email this company: " + countCompany + ".\n Last time:" + x.DateEmailSend;
                     }
                 }
-
+                
                 if (!columnName.Equals("Name"))
                     return string.Empty;
-
-
 
                 return string.Empty;
             }

@@ -9,12 +9,12 @@ using Unity;
 
 namespace SendCV.Services
 {
-    public class EmailService: IEmailService
+    public class EmailService : IEmailService
     {
         private string rootPath = ConfigurationManager.AppSettings["rootWritePath"];
-        private const string userName = "vrucy1991@gmail.com";
+        private const string userName = "vladimir.vrucinic@gmail.com";
         //TODO: encript
-        private const string pass = "Lion wir1";
+        private const string pass = "lionwir11";
         private IUnityContainer _container;
 
         public EmailService(IUnityContainer container)
@@ -25,7 +25,6 @@ namespace SendCV.Services
         public void SendEmail(CompanyCredentials company, bool isSendAtt)
         {
             var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
-            var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
             var fileReader = _container.Resolve<FileReader>();
             var fileWriter = _container.Resolve<FileWriter>();
             fileWriter.WriteDocuments(company, isSendAtt);
@@ -37,12 +36,12 @@ namespace SendCV.Services
                 mail.From = new MailAddress(userName);
                 mail.To.Add(company.Email);
 
-                mail.Subject = "Job";
+                mail.Subject = "Vladimir Vrucinc - Software Developer";
                 mail.Body = fileReader.GetEmailText(companyPath);
-                if (isSendAtt)
-                {
-                    mail.Attachments.Add(new Attachment(zipPath));
-                }
+
+                var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
+                mail.Attachments.Add(new Attachment(zipPath));
+
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(userName, pass);
                 SmtpServer.EnableSsl = true;
