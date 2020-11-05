@@ -5,10 +5,8 @@ using Syncfusion.Pdf;
 using Syncfusion.DocToPDFConverter;
 using System.IO;
 using Syncfusion.DocIO;
-using System.Collections.Generic;
 using System.IO.Compression;
 using SendCV.Models;
-using Syncfusion.Windows.Shared;
 using SendCV.Extensions;
 
 namespace SendCV.Services
@@ -36,12 +34,12 @@ namespace SendCV.Services
         {
             WordDocument docToRead = new WordDocument(String.Format("{0}/CoverLetterVladimirVrucinic.docx", rootWritePath));
 
-            docToRead.Replace("{company}", company.Name, true, false);
+            docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy"), true, false);
-            docToRead.HrManager(company.NameHR);
+            docToRead.ReplaceHrData( company.NameHR);
 
-            docToRead.Replace("{city}", company.CompanyAddress.City, true, false);
-            docToRead.Replace("{address}", company.CompanyAddress.Address, true, false);
+            docToRead.ReplaceDataInDocument("{city}", company.CompanyAddress.City);
+            docToRead.ReplaceDataInDocument("{address}", company.CompanyAddress.Address);
 
             DocToPDFConverter converter = new DocToPDFConverter();
             PdfDocument pdfDocument = converter.ConvertToPDF(docToRead);
@@ -56,10 +54,10 @@ namespace SendCV.Services
             var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
             //TODO: uraditi za sve jednu metodu koja radi ovo ispod za writeCoverLetter 
-            docToRead.HrManager(company.NameHR);
+            docToRead.ReplaceDataInDocument("{hrManager}",company.NameHR);
 
-            docToRead.Replace("{company}", company.Name, true, false);
-            docToRead.Replace("{country}", company.CompanyAddress.Country, true, false);
+            docToRead.ReplaceDataInDocument("{company}", company.Name);
+            docToRead.ReplaceDataInDocument("{country}", company.CompanyAddress.Country);
             docToRead.Save(String.Format("{0}/EmailToSend.txt", path), FormatType.Txt);
         }
         private void ZipFiles(string path)

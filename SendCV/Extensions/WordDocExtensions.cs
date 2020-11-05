@@ -1,22 +1,31 @@
 ﻿using Syncfusion.DocIO.DLS;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace SendCV.Extensions
 {
     public static class WordDocExtensions
     {
-        public static void HrManager(this WordDocument doc, string nameHr)
+        public static void ReplaceHrData(this WordDocument doc, string value)
         {
-            if (String.IsNullOrEmpty(nameHr))
+            if (String.IsNullOrEmpty(value))
             {
-                doc.Replace("{hrManager}", String.Empty, true, false);
+                doc.Replace("{address}, {city}", String.Empty, true, false);
+                doc.Replace("{hrManager}","{address}, {city} ", true, false);
             }
             else
             {
-                doc.Replace("{hrManager}", nameHr, true, false);
+                doc.Replace("{hrManager}", value, true, false);
+            }
+        }
+        public static void ReplaceDataInDocument(this WordDocument doc, string key, string value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                doc.Replace(key, String.Empty, true, false);
+            }
+            else
+            {
+                doc.Replace(key, value, true, false);
             }
         }
     }
