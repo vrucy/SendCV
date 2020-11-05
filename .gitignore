@@ -1,0 +1,13 @@
+/.vs/*
+**/obj/
+**/bin/
+*.nupkg
+*.snupkg
+*/[Pp]ackages/
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+*.user

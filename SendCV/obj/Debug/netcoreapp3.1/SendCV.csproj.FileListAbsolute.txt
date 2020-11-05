@@ -78,4 +78,3 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.pdb
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.genruntimeconfig.cache
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Syncfusion.SfInput.WPF.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CoreCompileInputs.cache
-C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csprojAssemblyReference.cache
