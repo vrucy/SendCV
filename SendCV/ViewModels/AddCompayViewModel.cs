@@ -3,6 +3,7 @@ using SendCV.Context;
 using SendCV.Enums;
 using SendCV.Interface;
 using SendCV.Models;
+using SendCV.Services;
 using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,17 @@ namespace SendCV.ViewModels
         private IEmailService _emailService;
         private IUnityContainer _container;
         private ICompanyRepo _companyRepo;
+        private FileWriter _fileWriter;
         CompanyCredentials company;
         CompanyAddress c;
 
-        public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo)
+        public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo, FileWriter fileWriter)
         {
             _companies = new ObservableCollection<CompanyCredentials>();
             company = new CompanyCredentials();
             company.CompanyAddress = new CompanyAddress();
+            _fileWriter = fileWriter;
+
             _emailService = emailService;
             _companyRepo = companyRepo;
         }
@@ -108,15 +112,17 @@ namespace SendCV.ViewModels
 
         private void SendMail(object x)
         {
+            //TODO: ukoliko je mail poslat, ako dobijem ok onda kreiram bazu
             var companyToSend = Companies.Where(c => c.Selected).ToList();
-            _companyRepo.SaveCompanies(companyToSend);
+
             foreach (var item in companyToSend)
             {
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
+                _fileWriter.WriteDocuments(company, sendAtt);
                 _emailService.SendEmail(item, sendAtt);
                 Companies.Remove(item);
             }
-            
+            _companyRepo.SaveCompanies(companyToSend);
             OnPropertyChanged("Companies");
         }
         public string CompanyName

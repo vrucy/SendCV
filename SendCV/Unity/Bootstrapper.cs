@@ -14,6 +14,7 @@ namespace SendCV.Unity
             container.RegisterType<IEmailService,EmailService>();
             container.RegisterType<ICompanyRepo, CompanyRepo>();
             container.RegisterType<SendCVContext>();
+            container.RegisterType<FileWriter>();
         }
     }
 }

@@ -8,6 +8,8 @@ using Syncfusion.DocIO;
 using System.IO.Compression;
 using SendCV.Models;
 using SendCV.Extensions;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace SendCV.Services
 {
@@ -23,11 +25,19 @@ namespace SendCV.Services
         {
             pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
             CreateCompanyFolder(pathCompany);
-            WriteTextEmail(company, pathCompany, isSendAtt);
-
-            WriteCoverLetter(company, pathCompany);
-            CopyFile(pathCompany);
-            ZipFiles(pathCompany);
+            try
+            {
+                WriteTextEmail(company, pathCompany, isSendAtt);
+                WriteCoverLetter(company, pathCompany);
+                CopyFile(pathCompany);
+                ZipFiles(pathCompany);
+            }
+            catch (IOException e)
+            {
+                System.Windows.MessageBox.Show("File is open, please close!","Confiramtion",MessageBoxButton.OK,MessageBoxImage.Warning);
+                
+                throw;
+            }
 
         }
         private void WriteCoverLetter(CompanyCredentials company, string path)
@@ -36,7 +46,7 @@ namespace SendCV.Services
 
             docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.Replace("{date}", DateTime.Now.ToString("MMMM dd, yyyy"), true, false);
-            docToRead.ReplaceHrData( company.NameHR);
+            docToRead.ReplaceHrData(company.NameHR);
 
             docToRead.ReplaceDataInDocument("{city}", company.CompanyAddress.City);
             docToRead.ReplaceDataInDocument("{address}", company.CompanyAddress.Address);
@@ -54,7 +64,7 @@ namespace SendCV.Services
             var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
             //TODO: uraditi za sve jednu metodu koja radi ovo ispod za writeCoverLetter 
-            docToRead.ReplaceDataInDocument("{hrManager}",company.NameHR);
+            docToRead.ReplaceDataInDocument("{hrManager}", company.NameHR);
 
             docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.ReplaceDataInDocument("{country}", company.CompanyAddress.Country);

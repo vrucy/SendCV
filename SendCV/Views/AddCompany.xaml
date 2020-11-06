@@ -102,6 +102,7 @@
                 <syncfusion:GridTextColumn HeaderText="Email" MappingName="Email"/>
                 <syncfusion:GridTextColumn HeaderText="Address" MappingName="CompanyAddress.Address" />
                 <syncfusion:GridTextColumn HeaderText="Country" MappingName="CompanyAddress.Country"/>
+                <syncfusion:GridTextColumn HeaderText="Type" MappingName="SelectedTypeEmail"/>
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
         

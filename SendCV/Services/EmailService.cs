@@ -26,8 +26,7 @@ namespace SendCV.Services
         {
             var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
             var fileReader = _container.Resolve<FileReader>();
-            var fileWriter = _container.Resolve<FileWriter>();
-            fileWriter.WriteDocuments(company, isSendAtt);
+            
             try
             {
                 MailMessage mail = new MailMessage();
