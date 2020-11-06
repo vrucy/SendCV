@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Unity;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SendCV.Repo
 {
@@ -20,10 +22,10 @@ namespace SendCV.Repo
             _context = _container.Resolve<SendCVContext>();
         }
 
-        public CompanyCredentials GetCompanyByLastDate(string name)
+        public async Task<CompanyCredentials> GetCompanyByLastDate(string name)
         {
             
-            var x = _context.CompanyCredentials.Where(c => c.Name == name).OrderByDescending(y => y.DateEmailSend).FirstOrDefault();
+            var x = await _context.CompanyCredentials.Where(c => c.Name == name).OrderByDescending(y => y.DateEmailSend).FirstOrDefaultAsync();
             return x;
         }
 
@@ -33,12 +35,12 @@ namespace SendCV.Repo
             return countCompany;
         }
 
-        public async void SaveCompanies(IEnumerable<CompanyCredentials> companies)
+        public async Task SaveCompanies(IEnumerable<CompanyCredentials> companies)
         {
             try
             {
                 companies.ForEach(c => c.DateEmailSend = DateTime.Now);
-                _context.CompanyCredentials.AddRange(companies);
+                await _context.CompanyCredentials.AddRangeAsync(companies);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -46,6 +48,11 @@ namespace SendCV.Repo
 
                 throw;
             }
+        }
+        public async Task SaveCompany(CompanyCredentials company)
+        {
+            await _context.CompanyCredentials.AddAsync(company);
+            await _context.SaveChangesAsync();
         }
     }
 }

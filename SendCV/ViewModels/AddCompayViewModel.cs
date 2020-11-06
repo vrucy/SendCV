@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Unity;
 
@@ -110,20 +111,23 @@ namespace SendCV.ViewModels
             OnPropertyChanged("Companies");
         }
 
-        private void SendMail(object x)
+        private async void SendMail(object x)
         {
             //TODO: ukoliko je mail poslat, ako dobijem ok onda kreiram bazu
             var companyToSend = Companies.Where(c => c.Selected).ToList();
 
             foreach (var item in companyToSend)
             {
-                var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
-                _fileWriter.WriteDocuments(company, sendAtt);
-                _emailService.SendEmail(item, sendAtt);
-                Companies.Remove(item);
+               await Task.Run(() => {
+                    var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
+                    _fileWriter.WriteDocuments(item, sendAtt);
+                    _emailService.SendEmail(item, sendAtt);
+                    Companies.Remove(item);
+                    _companyRepo.SaveCompany(item);
+                });
             }
-            _companyRepo.SaveCompanies(companyToSend);
             OnPropertyChanged("Companies");
+             
         }
         public string CompanyName
         {

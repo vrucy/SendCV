@@ -1,9 +1,10 @@
 ﻿using SendCV.Models;
+using System.Threading.Tasks;
 
 namespace SendCV.Interface
 {
     public interface IEmailService
     {
-        void SendEmail(CompanyCredentials company, bool isSendAtt);
+        Task SendEmail(CompanyCredentials company, bool isSendAtt);
     }
 }

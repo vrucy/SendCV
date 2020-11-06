@@ -9,7 +9,7 @@ using System.IO.Compression;
 using SendCV.Models;
 using SendCV.Extensions;
 using System.Windows;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace SendCV.Services
 {
@@ -86,9 +86,25 @@ namespace SendCV.Services
             var sourceFileCV = String.Format("{0}/VladimirVrucinicCV.pdf", rootWritePath);
             var sourceFileDiplom = String.Format("{0}/VladimirVrucinicDiplom.pdf", rootWritePath);
             var sourceFileRecommendation = String.Format("{0}/VladimirVrucinicRecommendation.pdf", rootWritePath);
+            //await CopyFileAsync(sourceFileCV, path);
+            //await CopyFileAsync(sourceFileDiplom,path);
+            //await CopyFileAsync(sourceFileRecommendation, path);
             System.IO.File.Copy(sourceFileCV, String.Format("{0}/VladimirVrucinicCV.pdf", path));
             System.IO.File.Copy(sourceFileDiplom, String.Format("{0}/VladimirVrucinicDiplom.pdf", path));
             System.IO.File.Copy(sourceFileRecommendation, String.Format("{0}/VladimirVrucinicRecommendation.pdf", path));
+        }
+        public async Task CopyFileAsync(string sourceFile, string destinationFile)
+        {
+            var fileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
+            var bufferSize = 4096;
+
+            using (var sourceStream =
+                  new FileStream(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, fileOptions))
+
+            using (var destinationStream =
+                  new FileStream(destinationFile, FileMode.CreateNew, FileAccess.Write, FileShare.None, bufferSize, fileOptions))
+
+                await sourceStream.CopyToAsync(destinationStream, bufferSize);
         }
         private void CreateCompanyFolder(string path)
         {

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Unity;
 
 namespace SendCV.Services
@@ -22,7 +23,7 @@ namespace SendCV.Services
             _container = container;
         }
 
-        public void SendEmail(CompanyCredentials company, bool isSendAtt)
+        public async Task SendEmail(CompanyCredentials company, bool isSendAtt)
         {
             var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
             var fileReader = _container.Resolve<FileReader>();
@@ -30,7 +31,6 @@ namespace SendCV.Services
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress(userName);
                 mail.To.Add(company.Email);
@@ -39,13 +39,15 @@ namespace SendCV.Services
                 mail.Body = fileReader.GetEmailText(companyPath);
 
                 var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
-                mail.Attachments.Add(new Attachment(zipPath));
+                 mail.Attachments.Add(new Attachment(zipPath));
+                using (SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"))
+                {
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential(userName, pass);
+                    SmtpServer.EnableSsl = true;
 
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(userName, pass);
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
+                   await SmtpServer.SendMailAsync(mail);
+                }
             }
             catch (System.Exception e)
             {
