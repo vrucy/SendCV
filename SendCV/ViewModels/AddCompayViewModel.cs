@@ -24,7 +24,6 @@ namespace SendCV.ViewModels
         private ICompanyRepo _companyRepo;
         private FileWriter _fileWriter;
         CompanyCredentials company;
-        CompanyAddress c;
 
         public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo, FileWriter fileWriter)
         {
@@ -36,7 +35,7 @@ namespace SendCV.ViewModels
             _emailService = emailService;
             _companyRepo = companyRepo;
         }
-
+        #region Command
         private ICommand _NavigateBack;
         private ICommand _AddCompany;
         private ICommand _DeleteCompany;
@@ -86,8 +85,12 @@ namespace SendCV.ViewModels
                 return _AddCompany;
             }
         }
-
-
+        public void NavigateBack(object x)
+        {
+            var mainWindow = _container.Resolve<MainWindow>();
+            //var mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
         public void AddCompany(object x)
         {
             company.SelectedTypeEmail = SelectedTypeEmail;
@@ -129,14 +132,13 @@ namespace SendCV.ViewModels
             OnPropertyChanged("Companies");
              
         }
+        #endregion
+
+        #region Prop
         public string CompanyName
         {
             get
             {
-                if (company.Name == null)
-                {
-                    return null;
-                }
                 return company.Name;
             }
             set { company.Name = value; OnPropertyChanged("CompanyName"); }
@@ -202,7 +204,6 @@ namespace SendCV.ViewModels
                 return Enum.GetValues(typeof(TypeEmail)).Cast<TypeEmail>();
             }
         }
-        // CompanyCredentials company;
         ObservableCollection<CompanyCredentials> _companies;
 
         public ObservableCollection<CompanyCredentials> Companies
@@ -215,14 +216,9 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("Companies");
             }
         }
-        //TODO: not good navigation must fix
-        public void NavigateBack(object x)
-        {
-            var mainWindow = _container.Resolve<MainWindow>();
-            //var mainWindow = new MainWindow();
-            mainWindow.Show();
-        }
+        #endregion
 
+        #region DataError
         Dictionary<string, string> dicError = new Dictionary<string, string>();
         Dictionary<string,bool> dicErrorSend = new Dictionary<string, bool>();
         
@@ -286,5 +282,6 @@ namespace SendCV.ViewModels
 
             return result;
         }
+        #endregion
     }
 }

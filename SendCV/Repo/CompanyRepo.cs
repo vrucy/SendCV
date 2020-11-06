@@ -34,21 +34,6 @@ namespace SendCV.Repo
             var countCompany = _context.CompanyCredentials.Where(c => c.Name == name).Count();
             return countCompany;
         }
-
-        public async Task SaveCompanies(IEnumerable<CompanyCredentials> companies)
-        {
-            try
-            {
-                companies.ForEach(c => c.DateEmailSend = DateTime.Now);
-                await _context.CompanyCredentials.AddRangeAsync(companies);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-                throw;
-            }
-        }
         public async Task SaveCompany(CompanyCredentials company)
         {
             await _context.CompanyCredentials.AddAsync(company);

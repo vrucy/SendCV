@@ -19,6 +19,7 @@ namespace SendCV.Models
             _context = _container.Resolve<SendCVContext>();
         }
         public int Id { get; set; }
+        [NotMapped]
         public bool Selected { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

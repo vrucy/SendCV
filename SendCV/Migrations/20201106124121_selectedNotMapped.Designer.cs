@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SendCV.Context;
 
 namespace SendCV.Migrations
 {
     [DbContext(typeof(SendCVContext))]
-    partial class SendCVContextModelSnapshot : ModelSnapshot
+    [Migration("20201106124121_selectedNotMapped")]
+    partial class selectedNotMapped
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
