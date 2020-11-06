@@ -262,7 +262,6 @@ namespace SendCV.ViewModels
                     result = "Invalid Email ID";
                 }
             }
-            //TODO: need and in _copanies not empty
             if (columnName == "SelectedTypeEmail")
             {
                 if (string.IsNullOrEmpty(SelectedTypeEmail))

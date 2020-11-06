@@ -78,3 +78,4 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\SendCV.cspro
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\SendCV.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\SendCV.pdb
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\SendCV.genruntimeconfig.cache
+C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\SendCV.csprojAssemblyReference.cache
