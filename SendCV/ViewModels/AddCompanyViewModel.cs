@@ -3,6 +3,7 @@ using SendCV.Context;
 using SendCV.Enums;
 using SendCV.Interface;
 using SendCV.Models;
+using SendCV.Repo;
 using SendCV.Services;
 using Syncfusion.Data.Extensions;
 using System;
@@ -17,24 +18,26 @@ using Unity;
 
 namespace SendCV.ViewModels
 {
-    public class AddCompayViewModel : BaseViewModel, IDataErrorInfo
+    public class AddCompanyViewModel : BaseViewModel, IDataErrorInfo
     {
-        private IEmailService _emailService;
+        private readonly IEmailService _emailService;
         private IUnityContainer _container;
-        private ICompanyRepo _companyRepo;
-        private FileWriter _fileWriter;
+        private readonly ICompanyRepo _companyRepo;
+        private readonly FileWriter _fileWriter;
         CompanyCredentials company;
 
-        public AddCompayViewModel(IEmailService emailService, ICompanyRepo companyRepo, FileWriter fileWriter)
+        public AddCompanyViewModel()
         {
             _companies = new ObservableCollection<CompanyCredentials>();
             company = new CompanyCredentials();
             company.CompanyAddress = new CompanyAddress();
-            _fileWriter = fileWriter;
+            _container = new UnityContainer();
+            _fileWriter = _container.Resolve<FileWriter>();
 
-            _emailService = emailService;
-            _companyRepo = companyRepo;
+            _emailService = _container.Resolve<EmailService>();
+            _companyRepo = _container.Resolve<CompanyRepo>();
         }
+
         #region Command
         private ICommand _NavigateBack;
         private ICommand _AddCompany;

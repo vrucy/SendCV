@@ -1,4 +1,4 @@
-﻿<Window x:Class="SendCV.Views.AddCompany"
+﻿<UserControl x:Class="SendCV.Views.AddCompany"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,26 +7,26 @@
         mc:Ignorable="d"
         xmlns:my="clr-namespace:SendCV.Enums"
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
-        Title="AddCompany" Height="558" Width="1178"
+         Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
-    
-    <Grid HorizontalAlignment="Left" Margin="0,0,0,22">
+
+    <Grid HorizontalAlignment="Left" Margin="0,0,0,128" Width="auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition Width="900" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="64"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="300"/>
-            <RowDefinition Height="45"/>
+            <!--<RowDefinition Height="64"/>-->
+            <!--<RowDefinition Height="40"/>-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <syncfusion:ButtonAdv Label="Back" Command="{Binding NavigateBackCommand}"
-                             FontSize="10" Grid.Column="0" Margin="0,0,80,10"/>
 
+        <!--<syncfusion:ButtonAdv Label="Back" Command="{Binding NavigateBackCommand}"
+                             FontSize="10" Grid.Column="0" Margin="0,0,80,10"/>-->
+        <!--<Button Grid.Column="0" Margin="0,0,95,32"/>-->
 
-        <StackPanel Grid.Row="2" Margin="5,5,10,-16" Grid.RowSpan="2" >
+        <StackPanel Grid.Row="0"  Grid.RowSpan="2" >
             <syncfusion:SfMaskedEdit
                 Watermark="Email"
                 Margin="10"
@@ -68,14 +68,14 @@
                 Watermark="Company Address"
                  Value="{Binding CompanyAddress, Mode=TwoWay, NotifyOnValidationError=True,
                 UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="{Binding CompanyAddress}" />
-            
+
             <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedTypeEmail,  Mode=TwoWay, NotifyOnValidationError=True,
                          UpdateSourceTrigger=PropertyChanged,
                          ValidatesOnDataErrors=True}" ItemsSource="{Binding TypesForSendEmail}"
                                 AllowMultiSelect="False" 
                                x:Name="SendButton" Height="35" Width="175" ></syncfusion:ComboBoxAdv>
         </StackPanel>
-        <Button Content="Add" Height="29" Grid.Row="3" Width="126" Command="{Binding AddCompanyCommand}">
+        <Button Content="Add" Height="20" Grid.Row="1" Width="126" Command="{Binding AddCompanyCommand}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -89,7 +89,7 @@
             </Button.Style>
         </Button>
 
-        <syncfusion:SfDataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Companies}" 
+        <syncfusion:SfDataGrid Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Companies}" 
             AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"
                                NavigationMode="Cell"
                                 ColumnSizer="Star"
@@ -105,11 +105,13 @@
                 <syncfusion:GridTextColumn HeaderText="Type" MappingName="SelectedTypeEmail"/>
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
-        
-        
-        <!--<syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>-->
-        <Button Content="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>
 
-        <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="3" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,10,764,6"/>
+
+        <!--<syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>-->
+        <Button Content="Send" Grid.Row="1" Height="29" Width="50" Grid.Column="1" Command="{Binding SendMailCommand}" Margin="430,96,109,90" >
+            
+        </Button>
+
+        <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="1" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,96,247,90"/>
     </Grid>
-</Window>
+</UserControl>

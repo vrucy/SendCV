@@ -12,9 +12,15 @@
     <Compile Update="Views\AddCompany.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\TableView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\AddCompany.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TableView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

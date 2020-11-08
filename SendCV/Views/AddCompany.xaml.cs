@@ -1,22 +1,20 @@
-﻿using SendCV.Context;
-using SendCV.ViewModels;
-using Syncfusion.UI.Xaml.Grid.Cells;
-using System.Collections.ObjectModel;
+﻿using SendCV.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SendCV.Views
 {
     /// <summary>
     /// Interaction logic for AddCompany.xaml
     /// </summary>
-    public partial class AddCompany : Window
+    public partial class AddCompany : UserControl
     {
-        public AddCompany(AddCompayViewModel viewModel)
+        //AddCompayViewModel viewModel;
+        public AddCompany()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            //DataContext = new AddCompanyViewModel();
         }
-
         
     }
 }

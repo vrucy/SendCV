@@ -81,7 +81,6 @@ namespace SendCV
                 SfSkinManager.ApplyStylesOnApplication = false;
             }
         }
-        
 
     }
 }

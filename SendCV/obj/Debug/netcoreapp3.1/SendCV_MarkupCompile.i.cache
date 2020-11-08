@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\vrucy\source\repos\SendCV\SendCV\App.xaml
-2-1986352923
+3-1813973442
 
-36-1100099174
+391873946569
 2451089059327
-Views\AddCompany.xaml;Views\MainWindow.xaml;
+Views\AddCompany.xaml;Views\MainWindow.xaml;Views\TableView.xaml;
 
-False
+True
 

@@ -1,13 +1,18 @@
-﻿using SendCV.Command;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using SendCV.Command;
 using SendCV.Interface;
 using SendCV.Models;
 using SendCV.Services;
 using SendCV.Views;
+using Syncfusion.Windows.Shared;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Printing;
 using System.Windows;
 using System.Windows.Input;
 using Unity;
+using Unity.Injection;
 
 namespace SendCV.ViewModels
 {
@@ -16,15 +21,14 @@ namespace SendCV.ViewModels
         private ICommand _NavigateToAddCompany;
         private ICommand _NavigateToTable;
         private IUnityContainer _container;
-        private IEmailService _emailService;
 
-        public MainWindowViewModel(IUnityContainer container, IEmailService emailService)
+        public MainWindowViewModel(IUnityContainer container)
         {
-            tabcollection = new ObservableCollection<TabModel>();
             _container = container;
-            _emailService = emailService;
-            Collection();
+            var x = new AddCompany();
+            UpdateViewCommand = new UpdateViewCommand(this);
         }
+        public ICommand UpdateViewCommand { get; set; }
 
         public ICommand NavigateToAddCompanyCommand
         {
@@ -40,8 +44,56 @@ namespace SendCV.ViewModels
         public void NavigateToAddCompany(object x)
         {
             var addCompany = _container.Resolve<AddCompany>();
-            addCompany.Show();
+            //addCompany.Show();
         }
+        //mozda napraviti listu i cuvati?
+        //private LinkedList<BaseViewModel> _selectedViewModel ;
+        List<BaseViewModel> _selectedViewModel;
+        public BaseViewModel SelectedViewModel
+        {
+            get 
+            {
+                if (_selectedViewModel == null)
+                {
+                    _selectedViewModel = new List<BaseViewModel>();
+                    _selectedViewModel.Add(new AddCompanyViewModel());
+                    //_selectedViewModel.AddFirst(new AddCompanyViewModel());
+                }
+                
+                var x = _selectedViewModel.FirstOrDefault();
+                return x; 
+            }
+            set
+            {
+                var y = value;
+                //da li posoji model
+                var x = _selectedViewModel.Any(y=>y.GetType() == typeof(AddCompanyViewModel));
+                if (!x)
+                {
+                    //_selectedViewModel.AddFirst(value);
+                    _selectedViewModel.Add(value);
+                }
+                else if (!_selectedViewModel.Any(y => y.GetType() == typeof(TableViewModel)))
+                {
+                    //_selectedViewModel.AddFirst(value);
+                    _selectedViewModel.Add(value);
+                    var itemIndex = _selectedViewModel.FindIndex(r => r.GetType() == value.GetType());
+                    var item = _selectedViewModel[itemIndex];
+                    _selectedViewModel[itemIndex] = _selectedViewModel[0];
+                    _selectedViewModel[0] = item;
+                }
+                else
+                {
+                    var itemIndex = _selectedViewModel.FindIndex(r=>r.GetType() == value.GetType());
+                    var item = _selectedViewModel[itemIndex];
+                    _selectedViewModel[itemIndex] = _selectedViewModel[0];
+                    _selectedViewModel[0] = item;
+                }
+
+                OnPropertyChanged(nameof(SelectedViewModel));
+            }
+        }
+
 
         public ICommand NavigateToTableCommand
         {
@@ -62,19 +114,6 @@ namespace SendCV.ViewModels
             //_navigationService.NavigateToTableOrders();
         }
         public ICommand _SaveCommand { get; private set; }
-        private ObservableCollection<TabModel> _tabcollection;
-        public ObservableCollection<TabModel> tabcollection
-        {
-            get
-            {
-                return _tabcollection;
-            }
-            set
-            {
-                _tabcollection = value;
-            }
-        }
-
 
         public ICommand SaveCommand
         {
@@ -90,20 +129,6 @@ namespace SendCV.ViewModels
         private void Save(object x)
         {
 
-        }
-        private void Collection()
-        {
-            TabModel model = new TabModel()
-            {
-                HeaderName = "Add new company"
-            };
-            TabModel model1 = new TabModel()
-            {
-                HeaderName = "View table"
-            };
-
-            tabcollection.Add(model);
-            tabcollection.Add(model1);
         }
     }
 }
