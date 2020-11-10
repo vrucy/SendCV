@@ -125,7 +125,8 @@ namespace SendCV.ViewModels
 
             foreach (var item in companyToSend)
             {
-               await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
                     _fileWriter.WriteDocuments(item, sendAtt);
                     _emailService.SendEmail(item, sendAtt);
@@ -134,9 +135,10 @@ namespace SendCV.ViewModels
                 });
             }
             OnPropertyChanged("Companies");
-             
+
         }
         #endregion
+
 
         #region Prop
         public string CompanyName
@@ -145,7 +147,11 @@ namespace SendCV.ViewModels
             {
                 return company.Name;
             }
-            set { company.Name = value; OnPropertyChanged("CompanyName"); }
+            set
+            {
+                company.Name = value;
+                OnPropertyChanged("CompanyName");
+            }
         }
 
         public string CompanyEmail
@@ -178,12 +184,12 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("SelectedTypeEmail");
             }
         }
-        
+
         public string CompanyCity
         {
             get { return company.CompanyAddress.City; }
             set { company.CompanyAddress.City = value; OnPropertyChanged("CompanyCity"); }
-}
+        }
 
         private string _error;
         public string Error
@@ -215,7 +221,7 @@ namespace SendCV.ViewModels
             set
             {
                 _companies = value;
-                
+
                 OnPropertyChanged("Companies");
             }
         }
@@ -223,33 +229,36 @@ namespace SendCV.ViewModels
 
         #region DataError
         Dictionary<string, string> dicError = new Dictionary<string, string>();
-        Dictionary<string,bool> dicErrorSend = new Dictionary<string, bool>();
-        
+        Dictionary<string, bool> dicErrorSend = new Dictionary<string, bool>();
+
         public string this[string columnName]
         {
             get
-            {                
-                    if (!String.IsNullOrEmpty(OnValidate(columnName)) && !dicError.ContainsKey(columnName))
-                    {
-                        dicError.Add(columnName, OnValidate(columnName));
-                    }
-                    else if (String.IsNullOrEmpty(OnValidate(columnName)))
-                    {
-                        dicError.Remove(columnName);
-                    }
-                
+            {
+                if (!String.IsNullOrEmpty(OnValidate(columnName)) && !dicError.ContainsKey(columnName))
+                {
+                    dicError.Add(columnName, OnValidate(columnName));
+                }
+                else if (String.IsNullOrEmpty(OnValidate(columnName)))
+                {
+                    dicError.Remove(columnName);
+                }
+
 
                 return OnValidate(columnName);
             }
         }
         private string OnValidate(string columnName)
-        {
+        {            
             string result = string.Empty;
             if (columnName == "CompanyName")
             {
                 if (string.IsNullOrEmpty(CompanyName))
                 {
                     result = "Name is mandatory";
+                }else if (_companyRepo.GetCompanyByLastDate(company.Name) != null)
+                {
+                    result = "Company exist";
                 }
 
             }
@@ -272,7 +281,7 @@ namespace SendCV.ViewModels
                     result = "Combobox is required";
                 }
             }
-            
+
             if (dicError.Count == 0)
             {
                 Error = null;

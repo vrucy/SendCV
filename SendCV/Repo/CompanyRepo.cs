@@ -23,10 +23,10 @@ namespace SendCV.Repo
         }
 
 
-        public async Task<CompanyCredentials> GetCompanyByLastDate(string name)
+        public CompanyCredentials GetCompanyByLastDate(string name)
         {
             
-            var x = await _context.CompanyCredentials.Where(c => c.Name == name).OrderByDescending(y => y.DateEmailSend).FirstOrDefaultAsync();
+            var x = _context.CompanyCredentials.OrderByDescending(y => y.DateEmailSend).FirstOrDefault(c => c.Name == name);
             return x;
         }
 

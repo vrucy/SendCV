@@ -23,6 +23,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"  Grid.RowSpan="2" >
+            
             <syncfusion:SfMaskedEdit
                 Watermark="Email"
                 Margin="10"
@@ -34,7 +35,9 @@
                 Watermark="CompanyName" Value="{Binding CompanyName,
                          Mode=TwoWay, NotifyOnValidationError=True,
                          UpdateSourceTrigger=PropertyChanged,
-                         ValidatesOnDataErrors=True}" Text="{Binding CompanyName}"/>
+                         ValidatesOnDataErrors=True}" Text="{Binding CompanyName}">
+
+            </syncfusion:SfMaskedEdit>
             <syncfusion:SfMaskedEdit
                 Margin="10"
                 Text="{Binding CompanyNameHR}"
@@ -70,6 +73,7 @@
                          ValidatesOnDataErrors=True}" ItemsSource="{Binding TypesForSendEmail}"
                                 AllowMultiSelect="False" 
                                x:Name="SendButton" Height="35" Width="175" ></syncfusion:ComboBoxAdv>
+
         </StackPanel>
         <Button Content="Add" Height="20" Grid.Row="1" Width="126" Command="{Binding AddCompanyCommand}">
             <Button.Style>
