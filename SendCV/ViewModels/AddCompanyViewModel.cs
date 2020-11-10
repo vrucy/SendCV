@@ -120,19 +120,18 @@ namespace SendCV.ViewModels
 
         private async void SendMail(object x)
         {
-            //TODO: ukoliko je mail poslat, ako dobijem ok onda kreiram bazu
             var companyToSend = Companies.Where(c => c.Selected).ToList();
 
             foreach (var item in companyToSend)
             {
-                await Task.Run(() =>
-                {
-                    var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
-                    _fileWriter.WriteDocuments(item, sendAtt);
-                    _emailService.SendEmail(item, sendAtt);
-                    Companies.Remove(item);
-                    _companyRepo.SaveCompany(item);
-                });
+                var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
+                _fileWriter.WriteDocuments(item, sendAtt);
+                await _emailService.SendEmail(item, sendAtt);
+                Companies.Remove(item);
+                await _companyRepo.SaveCompany(item);
+                //await Task.Run(async () =>
+                //{
+                //});
             }
             OnPropertyChanged("Companies");
 
@@ -248,7 +247,7 @@ namespace SendCV.ViewModels
                 return OnValidate(columnName);
             }
         }
-        private string ReplaceError(string key , string error)
+        private string ReplaceError(string key, string error)
         {
             if (dicError.ContainsKey(key))
             {
@@ -293,7 +292,7 @@ namespace SendCV.ViewModels
                 }
             }
 
-            if (dicError.Count == 0 ||(dicError.Count == 1 && IsExistNameInDb()))
+            if (dicError.Count == 0 || (dicError.Count == 1 && IsExistNameInDb()))
             {
                 Error = null;
             }

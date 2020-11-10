@@ -17,10 +17,6 @@ namespace SendCV.Services
     {
         private string rootWritePath = ConfigurationManager.AppSettings["rootWritePath"];
         private string pathCompany { get; set; }
-        public FileWriter()
-        {
-
-        }
         public void WriteDocuments(CompanyCredentials company, bool isSendAtt)
         {
             pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
@@ -49,7 +45,7 @@ namespace SendCV.Services
             docToRead.ReplaceHrData(company.NameHR);
 
             docToRead.ReplaceDataInDocument("{city}", company.CompanyAddress.City);
-            docToRead.ReplaceDataInDocument("{address}", company.CompanyAddress.Address);
+            docToRead.ReplaceAddress(company.CompanyAddress.Address);
 
             DocToPDFConverter converter = new DocToPDFConverter();
             PdfDocument pdfDocument = converter.ConvertToPDF(docToRead);
@@ -63,7 +59,7 @@ namespace SendCV.Services
         {
             var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
-            docToRead.ReplaceDataInDocument("{hrManager}", company.NameHR.Split(' ')[0]);
+            docToRead.ReplaceHrDataInEmail(company.NameHR);
 
             docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.ReplaceDataInDocument("{country}", company.CompanyAddress.Country);
@@ -119,6 +115,11 @@ namespace SendCV.Services
                 System.IO.Directory.CreateDirectory(path);
             }
 
+        }
+        //TODO: Delete folder, but where?
+        public void DeleteCompanyFolder(string path)
+        {
+            System.IO.Directory.Delete(path);
         }
     }
 }

@@ -37,6 +37,7 @@ namespace SendCV.Repo
         }
         public async Task SaveCompany(CompanyCredentials company)
         {
+            company.DateEmailSend = DateTime.Now;
             await _context.CompanyCredentials.AddAsync(company);
             await _context.SaveChangesAsync();
         }
