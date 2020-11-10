@@ -24,6 +24,7 @@ namespace SendCV.ViewModels
         private IUnityContainer _container;
         private readonly ICompanyRepo _companyRepo;
         private readonly FileWriter _fileWriter;
+        ObservableCollection<CompanyCredentials> _companies;
         CompanyCredentials company;
 
         public AddCompanyViewModel()
@@ -207,7 +208,6 @@ namespace SendCV.ViewModels
                 return Enum.GetValues(typeof(TypeEmail)).Cast<TypeEmail>();
             }
         }
-        ObservableCollection<CompanyCredentials> _companies;
 
         public ObservableCollection<CompanyCredentials> Companies
         {

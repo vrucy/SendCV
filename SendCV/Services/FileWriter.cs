@@ -63,8 +63,7 @@ namespace SendCV.Services
         {
             var typeEmail = isSendAtt ? "EmailToSend.docx" : "EmailToSendWithoutAtt.docx";
             WordDocument docToRead = new WordDocument(String.Format("{0}/{1}", rootWritePath, typeEmail));
-            //TODO: uraditi za sve jednu metodu koja radi ovo ispod za writeCoverLetter 
-            docToRead.ReplaceDataInDocument("{hrManager}", company.NameHR);
+            docToRead.ReplaceDataInDocument("{hrManager}", company.NameHR.Split(' ')[0]);
 
             docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.ReplaceDataInDocument("{country}", company.CompanyAddress.Country);

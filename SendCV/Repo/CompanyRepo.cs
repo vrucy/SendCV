@@ -22,6 +22,7 @@ namespace SendCV.Repo
             _context = _container.Resolve<SendCVContext>();
         }
 
+
         public async Task<CompanyCredentials> GetCompanyByLastDate(string name)
         {
             
@@ -38,6 +39,12 @@ namespace SendCV.Repo
         {
             await _context.CompanyCredentials.AddAsync(company);
             await _context.SaveChangesAsync();
+        }
+
+        IList<CompanyCredentials> ICompanyRepo.GetCompanies()
+        {
+            return _context.CompanyCredentials.Include(a => a.CompanyAddress).ToList();
+
         }
     }
 }

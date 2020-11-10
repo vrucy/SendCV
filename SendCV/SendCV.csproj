@@ -47,6 +47,7 @@
 <PackageReference Include="Syncfusion.Themes.Metro.Wpf" Version="18.3.0.44" />
 <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="18.3.0.44" />
 <PackageReference Include="System.Collections" Version="4.3.0" />
+<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 <PackageReference Include="Unity" Version="5.11.7" />
 </ItemGroup>
   

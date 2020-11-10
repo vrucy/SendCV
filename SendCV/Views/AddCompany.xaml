@@ -10,9 +10,9 @@
          Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
 
-    <Grid HorizontalAlignment="Left" Margin="0,0,0,128" Width="auto">
+    <Grid  Margin="0,0,0,128" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,10 +21,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!--<syncfusion:ButtonAdv Label="Back" Command="{Binding NavigateBackCommand}"
-                             FontSize="10" Grid.Column="0" Margin="0,0,80,10"/>-->
-        <!--<Button Grid.Column="0" Margin="0,0,95,32"/>-->
 
         <StackPanel Grid.Row="0"  Grid.RowSpan="2" >
             <syncfusion:SfMaskedEdit

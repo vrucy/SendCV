@@ -35,7 +35,7 @@ namespace SendCV.Services
                 mail.From = new MailAddress(userName);
                 mail.To.Add(company.Email);
 
-                mail.Subject = "Vladimir Vrucinc - Software Developer";
+                mail.Subject = "Vladimir Vrucinic - Software Developer";
                 mail.Body = fileReader.GetEmailText(companyPath);
 
                 var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
