@@ -9,7 +9,20 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
          Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
-
+    <UserControl.Resources>
+        <Style x:Key="errorToolTip" TargetType="Control">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                        Value="{
+                            Binding RelativeSource={x:Static RelativeSource.Self}, 
+                            Path=(Validation.Errors)/ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource errorToolTip}"/>
+        <Style TargetType="{x:Type syncfusion:SfMaskedEdit}" BasedOn="{StaticResource errorToolTip}"/>
+    </UserControl.Resources>
     <Grid  Margin="0,0,0,128" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -38,6 +51,7 @@
                          ValidatesOnDataErrors=True}" Text="{Binding CompanyName}">
 
             </syncfusion:SfMaskedEdit>
+            
             <syncfusion:SfMaskedEdit
                 Margin="10"
                 Text="{Binding CompanyNameHR}"
@@ -75,6 +89,7 @@
                                x:Name="SendButton" Height="35" Width="175" ></syncfusion:ComboBoxAdv>
 
         </StackPanel>
+        
         <Button Content="Add" Height="20" Grid.Row="1" Width="126" Command="{Binding AddCompanyCommand}">
             <Button.Style>
                 <Style TargetType="Button">

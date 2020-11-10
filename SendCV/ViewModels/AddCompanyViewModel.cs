@@ -248,17 +248,28 @@ namespace SendCV.ViewModels
                 return OnValidate(columnName);
             }
         }
+        private string ReplaceError(string key , string error)
+        {
+            if (dicError.ContainsKey(key))
+            {
+                dicError[key] = error;
+            }
+            return error;
+        }
         private string OnValidate(string columnName)
-        {            
+        {
             string result = string.Empty;
+            var duplicateCompany = _companyRepo.GetCompanyByLastDate(company.Name);
+
             if (columnName == "CompanyName")
             {
                 if (string.IsNullOrEmpty(CompanyName))
                 {
                     result = "Name is mandatory";
-                }else if (_companyRepo.GetCompanyByLastDate(company.Name) != null)
+                }
+                if (duplicateCompany != null)
                 {
-                    result = "Company exist";
+                    result = ReplaceError("CompanyName", $"You send company last email on: {duplicateCompany.DateEmailSend}");
                 }
 
             }
@@ -282,7 +293,7 @@ namespace SendCV.ViewModels
                 }
             }
 
-            if (dicError.Count == 0)
+            if (dicError.Count == 0 ||(dicError.Count == 1 && IsExistNameInDb()))
             {
                 Error = null;
             }
@@ -292,6 +303,20 @@ namespace SendCV.ViewModels
             }
 
             return result;
+        }
+        private bool IsExistNameInDb()
+        {
+            string error = "";
+            if (dicError.ContainsKey("CompanyName"))
+            {
+                dicError.TryGetValue("CompanyName", out error);
+                if (error.StartsWith("You send company last email on"))
+                {
+                    return true;
+                }
+
+            }
+            return false;
         }
         #endregion
     }
