@@ -108,7 +108,7 @@
             AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"
                                NavigationMode="Cell"
                                 ColumnSizer="Star"
-                                SelectionMode="Extended"
+                                SelectionMode="Extended" 
                                AllowEditing="True" GridValidationMode="InView"
                                 ShowRowHeader="True">
             <syncfusion:SfDataGrid.Columns>

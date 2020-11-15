@@ -10,6 +10,8 @@ using SendCV.Models;
 using SendCV.Extensions;
 using System.Windows;
 using System.Threading.Tasks;
+using Serilog;
+using Unity;
 
 namespace SendCV.Services
 {
@@ -17,6 +19,12 @@ namespace SendCV.Services
     {
         private string rootWritePath = ConfigurationManager.AppSettings["rootWritePath"];
         private string pathCompany { get; set; }
+        private IUnityContainer _container;
+
+        public FileWriter()
+        {
+            _container = new UnityContainer();
+        }
         public void WriteDocuments(CompanyCredentials company, bool isSendAtt)
         {
             pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
@@ -31,10 +39,8 @@ namespace SendCV.Services
             catch (IOException e)
             {
                 System.Windows.MessageBox.Show("File is open, please close!","Confiramtion",MessageBoxButton.OK,MessageBoxImage.Warning);
-                
-                throw;
+                WriteDocuments(company, isSendAtt);
             }
-
         }
         private void WriteCoverLetter(CompanyCredentials company, string path)
         {
@@ -64,6 +70,7 @@ namespace SendCV.Services
             docToRead.ReplaceDataInDocument("{company}", company.Name);
             docToRead.ReplaceDataInDocument("{country}", company.CompanyAddress.Country);
             docToRead.Save(String.Format("{0}/EmailToSend.txt", path), FormatType.Txt);
+            docToRead.Close();
         }
         private void ZipFiles(string path)
         {
@@ -81,9 +88,6 @@ namespace SendCV.Services
             var sourceFileCV = String.Format("{0}/VladimirVrucinicCV.pdf", rootWritePath);
             var sourceFileDiplom = String.Format("{0}/VladimirVrucinicDiplom.pdf", rootWritePath);
             var sourceFileRecommendation = String.Format("{0}/VladimirVrucinicRecommendation.pdf", rootWritePath);
-            //await CopyFileAsync(sourceFileCV, path);
-            //await CopyFileAsync(sourceFileDiplom,path);
-            //await CopyFileAsync(sourceFileRecommendation, path);
             System.IO.File.Copy(sourceFileCV, String.Format("{0}/VladimirVrucinicCV.pdf", path));
             System.IO.File.Copy(sourceFileDiplom, String.Format("{0}/VladimirVrucinicDiplom.pdf", path));
             System.IO.File.Copy(sourceFileRecommendation, String.Format("{0}/VladimirVrucinicRecommendation.pdf", path));
@@ -107,8 +111,8 @@ namespace SendCV.Services
             string[] myDirs = Directory.GetDirectories(rootWritePath, $"{companyName}*", SearchOption.TopDirectoryOnly);
             if (System.IO.Directory.Exists(path))
             {
-                System.IO.Directory.CreateDirectory(String.Format("{0}{1}", path, myDirs.Length));
-                pathCompany = String.Format("{0}{1}", path, myDirs.Length);
+                DeleteCompanyFolder(path);
+                System.IO.Directory.CreateDirectory(path);
             }
             else
             {
@@ -116,10 +120,9 @@ namespace SendCV.Services
             }
 
         }
-        //TODO: Delete folder, but where?
-        public void DeleteCompanyFolder(string path)
+        public async void DeleteCompanyFolder(string companyName)
         {
-            System.IO.Directory.Delete(path);
+            System.IO.Directory.Delete(pathCompany,true);
         }
     }
 }

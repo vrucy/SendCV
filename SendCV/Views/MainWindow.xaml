@@ -28,13 +28,6 @@
             <Button Content="Table" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>
             <!--<Button Content="" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>-->
         </StackPanel>
-        <!--<syncfusion:ButtonAdv Label="Add company" Command="{Binding NavigateToAddCompanyCommand}"
-                             FontSize="30" Grid.Column="0" Grid.RowSpan="2"/>
-
-
-        <syncfusion:ButtonAdv Label="Table" Command="{Binding NavigateToTableCommand}"
-                             FontSize="10" Grid.Column="1" Grid.RowSpan="2"/>-->
-        <!--<Button Content="Click" Click="Button_Click" Margin="40,20,75,136" Grid.Column="1" Grid.Row="2"/>-->
     </Grid>
 
 </Window>

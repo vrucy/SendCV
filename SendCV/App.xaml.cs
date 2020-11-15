@@ -1,6 +1,4 @@
-﻿using SendCV.Services;
-using SendCV.Unity;
-using System.Windows;
+﻿using System.Windows;
 using Unity;
 
 namespace SendCV
@@ -16,12 +14,12 @@ namespace SendCV
         }
         protected override void OnStartup(StartupEventArgs e)
         {
-            StartMainWindow();
             base.OnStartup(e);
+            StartMainWindow();
         }
         private void StartMainWindow()
         {
-            var mainWindow = UnityConfig.Container.Resolve<MainWindow>();
+            var mainWindow = Unity.UnityConfig.Container.Resolve<MainWindow>();
             mainWindow.Show();
         }
     }

@@ -1,5 +1,4 @@
 ﻿using SendCV.Command;
-using SendCV.Context;
 using SendCV.Enums;
 using SendCV.Interface;
 using SendCV.Models;
@@ -12,7 +11,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Unity;
 
@@ -40,7 +38,6 @@ namespace SendCV.ViewModels
         }
 
         #region Command
-        private ICommand _NavigateBack;
         private ICommand _AddCompany;
         private ICommand _DeleteCompany;
         public ICommand DeleteCompanyCommand
@@ -66,18 +63,6 @@ namespace SendCV.ViewModels
                 return _SendMail;
             }
         }
-
-        public ICommand NavigateBackCommand
-        {
-            get
-            {
-                if (_NavigateBack == null)
-                {
-                    _NavigateBack = new RelayCommand(NavigateBack);
-                }
-                return _NavigateBack;
-            }
-        }
         public ICommand AddCompanyCommand
         {
             get
@@ -88,12 +73,6 @@ namespace SendCV.ViewModels
                 }
                 return _AddCompany;
             }
-        }
-        public void NavigateBack(object x)
-        {
-            var mainWindow = _container.Resolve<MainWindow>();
-            //var mainWindow = new MainWindow();
-            mainWindow.Show();
         }
         public void AddCompany(object x)
         {
@@ -127,17 +106,14 @@ namespace SendCV.ViewModels
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
                 _fileWriter.WriteDocuments(item, sendAtt);
                 await _emailService.SendEmail(item, sendAtt);
-                Companies.Remove(item);
+                //_fileWriter.DeleteCompanyFolder(item.Name);
                 await _companyRepo.SaveCompany(item);
-                //await Task.Run(async () =>
-                //{
-                //});
+                Companies.Remove(item);
             }
             OnPropertyChanged("Companies");
 
         }
         #endregion
-
 
         #region Prop
         public string CompanyName

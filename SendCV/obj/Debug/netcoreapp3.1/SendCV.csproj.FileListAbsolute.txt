@@ -93,8 +93,10 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\Views\MainWind
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.g.resources
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.AssemblyInfoInputs.cache
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.AssemblyInfo.cs
-C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CoreCompileInputs.cache
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CopyComplete
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.pdb
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.genruntimeconfig.cache
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Serilog.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csproj.CoreCompileInputs.cache

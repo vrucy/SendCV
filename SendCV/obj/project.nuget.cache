@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kEJxjQQN5I9Ar/OepO+SM24Kh3ULyolebDBb5gpCTOpIYz5HNL5yEJdhAcX/zN5NYNJPEglb7FQ7+doFLibuSQ==",
+  "dgSpecHash": "RDfTN5T3qZaEPaTQj8mdOub5r3+VUQwPRVj7R1x0b7QJH4GYq7cvUvD1oUhS/8zUBHuUB8iLXsPvHtbiIdgsyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\vrucy\\source\\repos\\SendCV\\SendCV\\SendCV.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,8 @@
     "C:\\Users\\vrucy\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\vrucy\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\vrucy\\.nuget\\packages\\serilog.sinks.file\\4.1.0\\serilog.sinks.file.4.1.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.compression.base\\18.3.0.44\\syncfusion.compression.base.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.data.wpf\\18.3.0.44\\syncfusion.data.wpf.18.3.0.44.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\syncfusion.docio.wpf\\18.3.0.44\\syncfusion.docio.wpf.18.3.0.44.nupkg.sha512",
@@ -117,6 +119,7 @@
     "C:\\Users\\vrucy\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\vrucy\\.nuget\\packages\\system.threading.timer\\4.0.1\\system.threading.timer.4.0.1.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\vrucy\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",

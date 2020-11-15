@@ -17,7 +17,7 @@ namespace SendCV.Context
             base.OnConfiguring(optionsBuilder);
 #if DEBUG
             const string SERVER = "SendCVDebugContext";
-
+            //SendCVDebugContext
 #else
 
         const string SERVER = "SendCVContext";

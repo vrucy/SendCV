@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SendCV.Interface;
+using System;
 using System.Configuration;
 using System.IO;
 
 namespace SendCV.Services
 {
-    public class FileReader
+    public class FileReader: IFileReader
     {
         public string Destination()
         {
@@ -20,11 +21,14 @@ namespace SendCV.Services
             return text;
         }
 
-        public string PathEmail()
+        public string GetEmailSubject()
         {
-            throw new System.NotImplementedException();
+            return ConfigurationManager.AppSettings["EmailSubject"]; 
         }
-
+        public string CompanyPath(string companyName)
+        {
+            return "";
+        }
         public string PathLetter()
         {
             throw new System.NotImplementedException();

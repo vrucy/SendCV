@@ -29,6 +29,10 @@
   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 </PackageReference>
 
+<PackageReference Include="Serilog" Version="2.10.0" />
+
+<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+
 <PackageReference Include="Syncfusion.DocIO.Wpf" Version="18.3.0.44" />
 
 <PackageReference Include="Syncfusion.DocToPDFConverter.Wpf" Version="18.3.0.44" />

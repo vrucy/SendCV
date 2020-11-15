@@ -98,3 +98,5 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Serilog.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Serilog.Sinks.File.dll
