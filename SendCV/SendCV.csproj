@@ -15,16 +15,16 @@
 
 <PackageReference Include="MailChimp.Net.V3" Version="5.0.0" />
 
-<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
 
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 </PackageReference>
 
-<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
 
-<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 </PackageReference>
@@ -33,23 +33,23 @@
 
 <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
 
-<PackageReference Include="Syncfusion.DocIO.Wpf" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.DocIO.Wpf" Version="18.3.0.48" />
 
-<PackageReference Include="Syncfusion.DocToPDFConverter.Wpf" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.DocToPDFConverter.Wpf" Version="18.3.0.48" />
 
-<PackageReference Include="Syncfusion.Pdf.Wpf" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.Pdf.Wpf" Version="18.3.0.48" />
 
-<PackageReference Include="Syncfusion.SfInput.WPF" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.SfInput.WPF" Version="18.3.0.48" />
 
-<PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="18.3.0.48" />
 
-<PackageReference Include="Syncfusion.Shared.WPF" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.Tools.WPF" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.SfChart.WPF" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.SfDiagram.WPF" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.Themes.Metro.Wpf" Version="18.3.0.44" />
-<PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="18.3.0.44" />
+<PackageReference Include="Syncfusion.Shared.WPF" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.Tools.WPF" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.SfChart.WPF" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.SfDiagram.WPF" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.Themes.Metro.Wpf" Version="18.3.0.48" />
+<PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="18.3.0.48" />
 <PackageReference Include="System.Collections" Version="4.3.0" />
 <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 <PackageReference Include="Unity" Version="5.11.7" />

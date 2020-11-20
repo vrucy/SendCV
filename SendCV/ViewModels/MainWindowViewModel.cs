@@ -54,6 +54,10 @@ namespace SendCV.ViewModels
                 {
                     var itemIndex = _selectedViewModel.FindIndex(r=>r.GetType() == value.GetType());
                     var item = _selectedViewModel[itemIndex];
+                    if (item is TableViewModel)
+                    {
+                        item = value;
+                    }
                     _selectedViewModel[itemIndex] = _selectedViewModel[0];
                     _selectedViewModel[0] = item;
                 }

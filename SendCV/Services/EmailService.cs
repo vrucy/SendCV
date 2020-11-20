@@ -46,7 +46,7 @@ namespace SendCV.Services
                     SmtpServer.Credentials = new System.Net.NetworkCredential(userName, pass);
                     SmtpServer.EnableSsl = true;
 
-                   await SmtpServer.SendMailAsync(mail);
+                    await SmtpServer.SendMailAsync(mail);
                 }
             }
             catch (System.Exception e)

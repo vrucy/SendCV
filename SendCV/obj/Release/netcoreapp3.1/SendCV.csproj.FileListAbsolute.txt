@@ -6,8 +6,6 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\SendCV.runti
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\SendCV.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\SendCV.pdb
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\MailChimp.Net.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -18,7 +16,6 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Ex
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Microsoft.Extensions.Http.dll
@@ -56,13 +53,6 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\System.Ident
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\System.Runtime.Caching.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Unity.Abstractions.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Unity.Container.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\Views\MainWindow.baml
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\Views\AddCompany.g.cs
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Release\netcoreapp3.1\Views\MainWindow.g.cs
@@ -100,3 +90,16 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Serilog.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Serilog.Sinks.File.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\Humanizer.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll

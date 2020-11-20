@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MailChimp.Net.V3": {
               "target": "Package",
@@ -48,23 +50,23 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.9, )"
+              "version": "[5.0.0, )"
             },
             "Serilog": {
               "target": "Package",
@@ -76,51 +78,51 @@
             },
             "Syncfusion.DocIO.Wpf": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.DocToPDFConverter.Wpf": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.Pdf.Wpf": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfChart.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfDiagram.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfGrid.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfInput.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfSkinManager.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.SfTextInputLayout.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.Shared.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.Themes.Metro.Wpf": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "Syncfusion.Tools.WPF": {
               "target": "Package",
-              "version": "[18.3.0.44, )"
+              "version": "[18.3.0.48, )"
             },
             "System.Collections": {
               "target": "Package",
@@ -153,7 +155,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

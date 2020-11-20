@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
-using SendCV.Command;
+﻿using SendCV.Command;
 using SendCV.Interface;
 using SendCV.Models;
 using SendCV.Repo;
 using SendCV.Services;
 using Syncfusion.Data.Extensions;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -65,7 +63,6 @@ namespace SendCV.ViewModels
                 Companies.Remove(item);
             }
             OnPropertyChanged("Companies");
-
         }
     }
 }

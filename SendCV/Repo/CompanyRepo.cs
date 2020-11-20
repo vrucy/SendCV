@@ -26,8 +26,7 @@ namespace SendCV.Repo
         public CompanyCredentials GetCompanyByLastDate(string name)
         {
             
-            var x = _context.CompanyCredentials.OrderByDescending(y => y.DateEmailSend).FirstOrDefault(c => c.Name == name);
-            return x;
+            return _context.CompanyCredentials.OrderByDescending(y => y.DateEmailSend).FirstOrDefault(c => c.Name == name);
         }
 
         public int GetCompnayCount(string name)

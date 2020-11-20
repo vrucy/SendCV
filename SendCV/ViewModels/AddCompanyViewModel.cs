@@ -100,7 +100,7 @@ namespace SendCV.ViewModels
         private async void SendMail(object x)
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
-
+            var y = _container.Resolve<CryptoHelper.Crypto>();
             foreach (var item in companyToSend)
             {
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
@@ -234,10 +234,10 @@ namespace SendCV.ViewModels
         private string OnValidate(string columnName)
         {
             string result = string.Empty;
-            var duplicateCompany = _companyRepo.GetCompanyByLastDate(company.Name);
 
             if (columnName == "CompanyName")
             {
+                var duplicateCompany = _companyRepo.GetCompanyByLastDate(company.Name);
                 if (string.IsNullOrEmpty(CompanyName))
                 {
                     result = "Name is mandatory";
