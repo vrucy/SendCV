@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-         Height="558" Width="1178"
          xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
     <UserControl.Resources>
         <Style x:Key="errorToolTip" TargetType="Control">
@@ -20,7 +19,7 @@
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource errorToolTip}"/>
         <Style TargetType="{x:Type syncfusion:SfMaskedEdit}" BasedOn="{StaticResource errorToolTip}"/>
     </UserControl.Resources>
-    <Grid  Margin="0,0,0,128" >
+    <Grid   >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
@@ -28,12 +27,12 @@
         <Grid.RowDefinitions>
             <!--<RowDefinition Height="64"/>-->
             <!--<RowDefinition Height="40"/>-->
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" MinHeight="150"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"  Grid.RowSpan="2" >
-            
+        <StackPanel Grid.Row="0" Grid.Column="0">
+
             <syncfusion:SfMaskedEdit
                 Watermark="Email"
                 Margin="10"
@@ -48,7 +47,7 @@
                          ValidatesOnDataErrors=True}" Text="{Binding CompanyName}">
 
             </syncfusion:SfMaskedEdit>
-            
+
             <syncfusion:SfMaskedEdit
                 Margin="10"
                 Text="{Binding CompanyNameHR}"
@@ -87,19 +86,7 @@
 
         </StackPanel>
         
-        <Button Content="Add" Height="20" Grid.Row="1" Width="126" Command="{Binding AddCompanyCommand}">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Error}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="True"/>
-                            <Setter Property="BorderBrush" Value="Red"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+
 
         <syncfusion:SfDataGrid Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Companies}" 
             AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"
@@ -120,10 +107,22 @@
 
 
         <!--<syncfusion:ButtonAdv x:Name="send" Label="Send" Height="29" Grid.Row="3" Grid.Column="1" Command="{Binding SendMailCommand}" RenderTransformOrigin="0.698,0.588" Margin="594,11,180,5"/>-->
-        <Button Content="Send" Grid.Row="1" Height="29" Width="50" Grid.Column="1" Command="{Binding SendMailCommand}" Margin="430,96,109,90" >
-            
-        </Button>
+        <Button Content="Send" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="29" Width="50" Grid.Column="1" Command="{Binding SendMailCommand}" Margin="10" />
 
-        <syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="1" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,96,247,90"/>
+        <Button Content="Delete" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="1" Grid.Column="1" Width="115" Command="{Binding DeleteCompanyCommand}" />
+        <!--<syncfusion:ButtonAdv x:Name="delete" Label="Delete" Height="29" Grid.Row="1" Grid.Column="1" Width="126" Command="{Binding DeleteCompanyCommand}" Margin="10,96,247,90"/>-->
+        <Button Content="Add" Grid.Column="0" Height="20" Grid.Row="1" VerticalAlignment="Bottom" Margin="24,0,35,10" Command="{Binding AddCompanyCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Error}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

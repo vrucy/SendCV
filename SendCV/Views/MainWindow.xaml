@@ -1,10 +1,9 @@
 <Window x:Class="SendCV.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Send CV" Height="auto" Width="auto"
+        Title="Send CV" 
         xmlns:viewmodels="clr-namespace:SendCV.ViewModels"
-        xmlns:views="clr-namespace:SendCV.Views"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" >
+        xmlns:views="clr-namespace:SendCV.Views">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:AddCompanyViewModel}">
             <views:AddCompany/>
@@ -13,20 +12,20 @@
             <views:TableView/>
         </DataTemplate>
     </Window.Resources>
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Width="auto" Height="auto">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
             <!--<ColumnDefinition Width="*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
+            <!--<RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding SelectedViewModel}" Grid.Row="1" />
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" >
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
             <Button Content="Add Company" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="AddCompany"/>
             <Button Content="Table" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>
-            <!--<Button Content="" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>-->
         </StackPanel>
     </Grid>
 
