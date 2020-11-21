@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <!--<RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding SelectedViewModel}" Grid.Row="1" />

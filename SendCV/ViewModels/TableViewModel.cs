@@ -1,4 +1,5 @@
 ﻿using SendCV.Command;
+using SendCV.Extensions;
 using SendCV.Interface;
 using SendCV.Models;
 using SendCV.Repo;
@@ -31,7 +32,10 @@ namespace SendCV.ViewModels
         }
         public ObservableCollection<CompanyCredentials> Companies
         {
-            get { return _companies; }
+            get 
+            {
+                return _companies; 
+            }
             set
             {
                 _companies = value;
