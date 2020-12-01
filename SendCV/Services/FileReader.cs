@@ -7,9 +7,9 @@ namespace SendCV.Services
 {
     public class FileReader: IFileReader
     {
-        public string Destination()
+        public string RootPath()
         {
-            var path = ConfigurationManager.AppSettings["path"];
+            var path = ConfigurationManager.AppSettings["rootWritePath"];
             return path;
         }
 
@@ -17,10 +17,9 @@ namespace SendCV.Services
         {
             var filePath = String.Format("{0}/EmailToSend.txt", companyPath);
             
-            string text = File.ReadAllText(filePath);
-            return text;
+            return File.ReadAllText(filePath);
         }
-
+        
         public string GetEmailSubject()
         {
             return ConfigurationManager.AppSettings["EmailSubject"]; 
@@ -32,6 +31,11 @@ namespace SendCV.Services
         public string PathLetter()
         {
             throw new System.NotImplementedException();
+        }
+
+        public string GetSignature()
+        {
+            return File.ReadAllText(RootPath() + "/Signature.txt");
         }
     }
 }

@@ -23,10 +23,10 @@ namespace SendCV.Repo
         }
 
 
-        public CompanyCredentials GetCompanyByLastDate(string name)
+        public IList<CompanyCredentials> GetCompaniesByLastDate(string name)
         {
             
-            return _context.CompanyCredentials.OrderByDescending(y => y.DateEmailSend).FirstOrDefault(c => c.Name == name);
+            return _context.CompanyCredentials.OrderByDescending(y => y.DateEmailSend).Where(c => c.Name == name).ToList();
         }
 
         public int GetCompnayCount(string name)
@@ -40,7 +40,12 @@ namespace SendCV.Repo
             await _context.CompanyCredentials.AddAsync(company);
             await _context.SaveChangesAsync();
         }
-
+        public async Task UpdateSendingDate(CompanyCredentials company)
+        {
+            company.DateEmailSend = DateTime.Now;
+            _context.Update(company);
+            await _context.SaveChangesAsync();
+        }
         IList<CompanyCredentials> ICompanyRepo.GetCompanies()
         {
             return _context.CompanyCredentials.Include(a => a.CompanyAddress).ToList();

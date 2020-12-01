@@ -122,7 +122,7 @@ namespace SendCV.Services
         }
         public async void DeleteCompanyFolder(string companyName)
         {
-            System.IO.Directory.Delete(pathCompany,true);
+            System.IO.Directory.Delete(companyName, true);
         }
     }
 }

@@ -60,11 +60,12 @@ namespace SendCV.ViewModels
 
             foreach (var item in companyToSend)
             {
+                item.SelectedTypeEmail = "OnlyEmail";
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
                 _fileWriter.WriteDocuments(item, sendAtt);
-                await _emailService.SendEmail(item, sendAtt);
-                await _companyRepo.SaveCompany(item);
-                Companies.Remove(item);
+                //await _emailService.SendEmail(item, sendAtt);
+                await _companyRepo.UpdateSendingDate(item);
+                item.Selected = false;
             }
             OnPropertyChanged("Companies");
         }

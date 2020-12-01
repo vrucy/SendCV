@@ -28,7 +28,8 @@ namespace SendCV.Models
         public CompanyAddress CompanyAddress { get; set; }
         [NotMapped]
         public string SelectedTypeEmail { get; set; }
-
+        [NotMapped]
+        public string SubjectEmail { get; set; }
         public string Error
         {
             get

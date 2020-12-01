@@ -77,6 +77,11 @@
                 Watermark="Company Address"
                  Value="{Binding CompanyAddress, Mode=TwoWay, NotifyOnValidationError=True,
                 UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="{Binding CompanyAddress}" />
+            <syncfusion:SfMaskedEdit
+                Margin="10"
+                Watermark="Subject email"
+                 Value="{Binding SubjectEmail, Mode=TwoWay, NotifyOnValidationError=True,
+                UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Text="{Binding SubjectEmail}" />
 
             <syncfusion:ComboBoxAdv SelectedItem="{Binding SelectedTypeEmail,  Mode=TwoWay, NotifyOnValidationError=True,
                          UpdateSourceTrigger=PropertyChanged,

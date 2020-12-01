@@ -4,12 +4,14 @@ using SendCV.Interface;
 using SendCV.Models;
 using SendCV.Repo;
 using SendCV.Services;
+using Serilog;
 using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Unity;
@@ -24,7 +26,6 @@ namespace SendCV.ViewModels
         private readonly FileWriter _fileWriter;
         ObservableCollection<CompanyCredentials> _companies;
         CompanyCredentials company;
-
         public AddCompanyViewModel()
         {
             _companies = new ObservableCollection<CompanyCredentials>();
@@ -32,7 +33,6 @@ namespace SendCV.ViewModels
             company.CompanyAddress = new CompanyAddress();
             _container = new UnityContainer();
             _fileWriter = _container.Resolve<FileWriter>();
-
             _emailService = _container.Resolve<EmailService>();
             _companyRepo = _container.Resolve<CompanyRepo>();
         }
@@ -81,7 +81,11 @@ namespace SendCV.ViewModels
             company = new CompanyCredentials();
             company.CompanyAddress = new CompanyAddress();
             SelectedTypeEmail = null;
+            company.CompanyAddress.City = _companies.LastOrDefault().CompanyAddress.City;
+            company.CompanyAddress.Country = _companies.LastOrDefault().CompanyAddress.Country;
+            SubjectEmail = null;
             OnPropertyChanged("SelectedTypeEmail");
+            OnPropertyChanged("SubjectEmail");
             OnPropertyChanged("CompanyName");
             OnPropertyChanged("CompanyCity");
             OnPropertyChanged("CompanyEmail");
@@ -105,7 +109,7 @@ namespace SendCV.ViewModels
             {
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
                 _fileWriter.WriteDocuments(item, sendAtt);
-                await _emailService.SendEmail(item, sendAtt);
+                await _emailService.SendEmail(item, sendAtt, SubjectEmail);
                 //_fileWriter.DeleteCompanyFolder(item.Name);
                 await _companyRepo.SaveCompany(item);
                 Companies.Remove(item);
@@ -200,11 +204,22 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("Companies");
             }
         }
+        
+
+        public string SubjectEmail
+        {
+            get { return company.SubjectEmail; }
+            set 
+            {
+                company.SubjectEmail = value;
+                OnPropertyChanged("SubjectEmail");
+            }
+        }
+
         #endregion
 
         #region DataError
         Dictionary<string, string> dicError = new Dictionary<string, string>();
-        Dictionary<string, bool> dicErrorSend = new Dictionary<string, bool>();
 
         public string this[string columnName]
         {
@@ -237,14 +252,20 @@ namespace SendCV.ViewModels
 
             if (columnName == "CompanyName")
             {
-                var duplicateCompany = _companyRepo.GetCompanyByLastDate(company.Name);
+                var duplicateCompany = _companyRepo.GetCompaniesByLastDate(company.Name);
                 if (string.IsNullOrEmpty(CompanyName))
                 {
                     result = "Name is mandatory";
                 }
-                if (duplicateCompany != null)
+                if (duplicateCompany.Count != 0 )
                 {
-                    result = ReplaceError("CompanyName", $"You send company last email on: {duplicateCompany.DateEmailSend}");
+                    var t = new StringBuilder();
+                    foreach (var item in duplicateCompany.Take(3))
+                    {
+                        t.AppendLine($"You send company last email on: {item.DateEmailSend}");
+                    }
+                    
+                    result = ReplaceError("CompanyName", t.ToString().Trim());
                 }
 
             }

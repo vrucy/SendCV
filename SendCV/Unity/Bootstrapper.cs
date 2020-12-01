@@ -13,6 +13,7 @@ namespace SendCV.Unity
     {
         public static void Initialize(IUnityContainer container)
         {
+           
             container.RegisterType<IEmailService,EmailService>();
             container.RegisterType<ICompanyRepo, CompanyRepo>();
             container.RegisterType<IFileReader, FileReader>();

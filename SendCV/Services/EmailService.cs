@@ -1,9 +1,8 @@
 ﻿using SendCV.Interface;
 using SendCV.Models;
+using Serilog;
 using System;
-using System.ComponentModel;
 using System.Configuration;
-using System.IO;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Unity;
@@ -17,16 +16,18 @@ namespace SendCV.Services
         //TODO: encript
         private const string pass = "lionwir11";
         private IUnityContainer _container;
-
-        public EmailService(IUnityContainer container)
+        private FileReader _fileReader;
+        //private readonly ILogger _logger;
+        public EmailService(IUnityContainer container, FileReader fileReader/*,ILogger logger*/)
         {
             _container = container;
+            _fileReader = fileReader;
+            //_logger = logger;
         }
 
-        public async Task SendEmail(CompanyCredentials company, bool isSendAtt)
+        public async Task SendEmail(CompanyCredentials company,bool isAtt, string subjectEmail)
         {
             var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
-            var fileReader = _container.Resolve<FileReader>();
             
             try
             {
@@ -34,10 +35,15 @@ namespace SendCV.Services
 
                 mail.From = new MailAddress(userName);
                 mail.To.Add(company.Email);
-
-                mail.Subject = "Vladimir Vrucinic - Software Developer job";
-                mail.Body = fileReader.GetEmailText(companyPath);
-
+                if (String.IsNullOrEmpty(subjectEmail))
+                {
+                    mail.Subject = "Vladimir Vrucinic - Software Developer job";
+                }
+                else
+                {
+                    mail.Subject = subjectEmail;
+                }
+                mail.Body = _fileReader.GetEmailText(companyPath);
                 var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
                  mail.Attachments.Add(new Attachment(zipPath));
                 using (SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"))
@@ -51,7 +57,8 @@ namespace SendCV.Services
             }
             catch (System.Exception e)
             {
-
+                //_logger.Error("Exeption message: " + e.Message);
+                //_logger.Error("Inner exeption message: " + e.InnerException.Message);
                 throw;
             }
         }
