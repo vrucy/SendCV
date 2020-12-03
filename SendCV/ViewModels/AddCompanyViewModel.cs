@@ -34,9 +34,9 @@ namespace SendCV.ViewModels
             _container = new UnityContainer();
             _fileWriter = _container.Resolve<FileWriter>();
             _emailService = _container.Resolve<EmailService>();
-            _companyRepo = _container.Resolve<CompanyRepo>();
+             _companyRepo = _container.Resolve<CompanyRepo>();
         }
-
+        
         #region Command
         private ICommand _AddCompany;
         private ICommand _DeleteCompany;
@@ -108,12 +108,18 @@ namespace SendCV.ViewModels
             foreach (var item in companyToSend)
             {
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
-                _fileWriter.WriteDocuments(item, sendAtt);
-                await _emailService.SendEmail(item, sendAtt, SubjectEmail);
+                //_fileWriter.WriteDocuments(item, sendAtt);
+                if (_fileWriter.WriteDocuments(item, sendAtt))
+                {
+                    await _emailService.SendEmail(item, sendAtt, SubjectEmail);
+
+                    await _companyRepo.SaveCompany(item);
+                    Companies.Remove(item);
+                }
+                
                 //_fileWriter.DeleteCompanyFolder(item.Name);
-                await _companyRepo.SaveCompany(item);
-                Companies.Remove(item);
             }
+
             OnPropertyChanged("Companies");
 
         }
@@ -204,12 +210,12 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("Companies");
             }
         }
-        
+
 
         public string SubjectEmail
         {
             get { return company.SubjectEmail; }
-            set 
+            set
             {
                 company.SubjectEmail = value;
                 OnPropertyChanged("SubjectEmail");
@@ -257,14 +263,14 @@ namespace SendCV.ViewModels
                 {
                     result = "Name is mandatory";
                 }
-                if (duplicateCompany.Count != 0 )
+                if (duplicateCompany.Count != 0)
                 {
                     var t = new StringBuilder();
                     foreach (var item in duplicateCompany.Take(3))
                     {
                         t.AppendLine($"You send company last email on: {item.DateEmailSend}");
                     }
-                    
+
                     result = ReplaceError("CompanyName", t.ToString().Trim());
                 }
 

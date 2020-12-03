@@ -11,7 +11,7 @@ namespace SendCV.CryptoHelper
         //While an app specific salt is not the best practice for
         //password based encryption, it's probably safe enough as long as
         //it is truly uncommon. Also too much work to alter this answer otherwise.
-        private const string ENCRYPTION_KEY = "some-secret-key";
+        private const string ENCRYPTION_KEY = "SuperkeY7524";
         private static byte[] _salt = Encoding.ASCII.GetBytes(ENCRYPTION_KEY);
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace SendCV.CryptoHelper
         /// </summary>
         /// <param name="plainText">The text to encrypt.</param>
         /// <param name="sharedSecret">A password used to generate a key for encryption.</param>
-        public string EncryptStringAES(string plainText)
+        public static string EncryptStringAES(string plainText)
         {
             if (string.IsNullOrEmpty(plainText))
                 throw new ArgumentNullException("plainText");
@@ -70,6 +70,8 @@ namespace SendCV.CryptoHelper
             return outStr;
         }
 
+        
+
         /// <summary>
         /// Decrypt the given string.  Assumes the string was encrypted using 
         /// EncryptStringAES(), using an identical sharedSecret.
@@ -98,6 +100,7 @@ namespace SendCV.CryptoHelper
 
                 // Create the streams used for decryption.                
                 byte[] bytes = Convert.FromBase64String(cipherText);
+                
                 using (MemoryStream msDecrypt = new MemoryStream(bytes))
                 {
                     // Create a RijndaelManaged object

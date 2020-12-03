@@ -11,6 +11,9 @@
         <DataTemplate DataType="{x:Type viewmodels:TableViewModel}">
             <views:TableView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EmailCredentialsViewModel}">
+            <views:EmailCredentialsPage/>
+        </DataTemplate>
     </Window.Resources>
     <Grid VerticalAlignment="Top" HorizontalAlignment="Center" >
         <Grid.ColumnDefinitions>
@@ -26,6 +29,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
             <Button Content="Add Company" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="AddCompany"/>
             <Button Content="Table" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>
+            <Button Content="Email Credentials" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="EmailCredentials"/>
         </StackPanel>
     </Grid>
 

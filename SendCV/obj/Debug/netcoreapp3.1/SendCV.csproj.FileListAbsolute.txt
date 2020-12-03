@@ -102,4 +102,6 @@ C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win-x
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\vrucy\source\repos\SendCV\SendCV\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\Views\EmailCredentialsPage.g.cs
+C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\Views\EmailCredentialsPage.baml
 C:\Users\vrucy\source\repos\SendCV\SendCV\obj\Debug\netcoreapp3.1\SendCV.csprojAssemblyReference.cache

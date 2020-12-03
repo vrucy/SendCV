@@ -32,6 +32,10 @@ namespace SendCV.Command
             {
                 viewModel.SelectedViewModel = new TableViewModel();
             }
+            else if (parameter.ToString() == "EmailCredentials")
+            {
+                viewModel.SelectedViewModel = new EmailCredentialsViewModel();
+            }
         }
     }
 }

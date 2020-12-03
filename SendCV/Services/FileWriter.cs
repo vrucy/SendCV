@@ -25,7 +25,7 @@ namespace SendCV.Services
         {
             _container = new UnityContainer();
         }
-        public void WriteDocuments(CompanyCredentials company, bool isSendAtt)
+        public bool WriteDocuments(CompanyCredentials company, bool isSendAtt)
         {
             pathCompany = String.Format("{0}/{1}", rootWritePath, company.Name);
             CreateCompanyFolder(pathCompany);
@@ -35,11 +35,12 @@ namespace SendCV.Services
                 WriteCoverLetter(company, pathCompany);
                 CopyFile(pathCompany);
                 ZipFiles(pathCompany);
+                return true;
             }
             catch (IOException e)
             {
-                System.Windows.MessageBox.Show("File is open, please close!","Confiramtion",MessageBoxButton.OK,MessageBoxImage.Warning);
-                WriteDocuments(company, isSendAtt);
+                System.Windows.MessageBox.Show(String.Format("File is open, please close! Company name: {0}",company.Name),"Confiramtion",MessageBoxButton.OK,MessageBoxImage.Warning);
+                return false;
             }
         }
         private void WriteCoverLetter(CompanyCredentials company, string path)

@@ -12,17 +12,26 @@ namespace SendCV.Services
     public class EmailService : IEmailService
     {
         private string rootPath = ConfigurationManager.AppSettings["rootWritePath"];
-        private const string userName = "vladimir.vrucinic@gmail.com";
+        //private const string userName = "vladimir.vrucinic@gmail.com";
         //TODO: encript
-        private const string pass = "lionwir11";
+        //private const string pass = "lionwir11";
+        private string userName = ConfigurationManager.AppSettings["UserNameEmail"];
+        private string pass = CryptoHelper.Crypto.DecryptStringAES(ConfigurationManager.AppSettings["PassEmail"]);
         private IUnityContainer _container;
         private FileReader _fileReader;
         //private readonly ILogger _logger;
         public EmailService(IUnityContainer container, FileReader fileReader/*,ILogger logger*/)
         {
+            CheckEmail();
             _container = container;
             _fileReader = fileReader;
             //_logger = logger;
+        }
+
+        private string CheckEmail()
+        {
+            var x = CryptoHelper.Crypto.DecryptStringAES(ConfigurationManager.AppSettings["PassEmail"]);
+            return "";
         }
 
         public async Task SendEmail(CompanyCredentials company,bool isAtt, string subjectEmail)
@@ -59,6 +68,7 @@ namespace SendCV.Services
             {
                 //_logger.Error("Exeption message: " + e.Message);
                 //_logger.Error("Inner exeption message: " + e.InnerException.Message);
+                //TODO: mess error comp name
                 throw;
             }
         }
