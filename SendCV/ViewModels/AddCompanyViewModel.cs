@@ -215,8 +215,6 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("Companies");
             }
         }
-
-
         
 
         #endregion

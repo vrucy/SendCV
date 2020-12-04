@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\vrucy\source\repos\SendCV\SendCV\App.xaml
-3-1813973442
+4-1413791811
 
-401848855714
+43361647224
 2442108254019
-Views\AddCompany.xaml;Views\MainWindow.xaml;Views\TableView.xaml;
+Views\AddCompany.xaml;Views\EmailCredentialsPage.xaml;Views\MainWindow.xaml;Views\TableView.xaml;
 
 False
 

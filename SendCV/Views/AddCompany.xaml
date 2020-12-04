@@ -30,7 +30,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" >
+        <StackPanel Grid.Row="0" Grid.Column="0" Width="200">
             <syncfusion:SfMaskedEdit
                 Watermark="Email"
                 Margin="10"
