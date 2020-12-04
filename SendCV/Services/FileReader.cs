@@ -23,19 +23,6 @@ namespace SendCV.Services
         public string GetEmailSubject()
         {
             return ConfigurationManager.AppSettings["EmailSubject"]; 
-        }
-        public string CompanyPath(string companyName)
-        {
-            return "";
-        }
-        public string PathLetter()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string GetSignature()
-        {
-            return File.ReadAllText(RootPath() + "/Signature.txt");
-        }
+        }   
     }
 }

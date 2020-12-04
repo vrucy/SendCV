@@ -5,6 +5,6 @@ namespace SendCV.Interface
 {
     public interface IEmailService
     {
-        Task SendEmail(CompanyCredentials company, bool isSendAtt, string subjectEmail);
+        Task SendEmail(CompanyCredentials company, bool isSendAtt);
     }
 }

@@ -83,7 +83,6 @@ namespace SendCV.ViewModels
             SelectedTypeEmail = null;
             company.CompanyAddress.City = _companies.LastOrDefault().CompanyAddress.City;
             company.CompanyAddress.Country = _companies.LastOrDefault().CompanyAddress.Country;
-            SubjectEmail = null;
             OnPropertyChanged("SelectedTypeEmail");
             OnPropertyChanged("SubjectEmail");
             OnPropertyChanged("CompanyName");
@@ -104,14 +103,12 @@ namespace SendCV.ViewModels
         private async void SendMail(object x)
         {
             var companyToSend = Companies.Where(c => c.Selected).ToList();
-            var y = _container.Resolve<CryptoHelper.Crypto>();
             foreach (var item in companyToSend)
             {
                 var sendAtt = item.SelectedTypeEmail.Equals("OnlyEmail") ? false : true;
-                //_fileWriter.WriteDocuments(item, sendAtt);
                 if (_fileWriter.WriteDocuments(item, sendAtt))
                 {
-                    await _emailService.SendEmail(item, sendAtt, SubjectEmail);
+                    await _emailService.SendEmail(item, sendAtt);
 
                     await _companyRepo.SaveCompany(item);
                     Companies.Remove(item);
@@ -169,7 +166,15 @@ namespace SendCV.ViewModels
                 OnPropertyChanged("SelectedTypeEmail");
             }
         }
-
+        public string SubjectEmail
+        {
+            get { return company.SubjectEmail; }
+            set
+            {
+                company.SubjectEmail = value;
+                OnPropertyChanged("SubjectEmail");
+            }
+        }
         public string CompanyCity
         {
             get { return company.CompanyAddress.City; }
@@ -212,15 +217,7 @@ namespace SendCV.ViewModels
         }
 
 
-        public string SubjectEmail
-        {
-            get { return company.SubjectEmail; }
-            set
-            {
-                company.SubjectEmail = value;
-                OnPropertyChanged("SubjectEmail");
-            }
-        }
+        
 
         #endregion
 

@@ -34,34 +34,17 @@ namespace SendCV.Services
             return "";
         }
 
-        public async Task SendEmail(CompanyCredentials company,bool isAtt, string subjectEmail)
+        public async Task SendEmail(CompanyCredentials company,bool isAtt)
         {
-            var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
-            
             try
             {
-                MailMessage mail = new MailMessage();
-
-                mail.From = new MailAddress(userName);
-                mail.To.Add(company.Email);
-                if (String.IsNullOrEmpty(subjectEmail))
-                {
-                    mail.Subject = "Vladimir Vrucinic - Software Developer job";
-                }
-                else
-                {
-                    mail.Subject = subjectEmail;
-                }
-                mail.Body = _fileReader.GetEmailText(companyPath);
-                var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
-                 mail.Attachments.Add(new Attachment(zipPath));
                 using (SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"))
                 {
                     SmtpServer.Port = 587;
                     SmtpServer.Credentials = new System.Net.NetworkCredential(userName, pass);
                     SmtpServer.EnableSsl = true;
 
-                    await SmtpServer.SendMailAsync(mail);
+                    await SmtpServer.SendMailAsync(CreateMail(company, isAtt));
                 }
             }
             catch (System.Exception e)
@@ -70,6 +53,33 @@ namespace SendCV.Services
                 //_logger.Error("Inner exeption message: " + e.InnerException.Message);
                 //TODO: mess error comp name
                 throw;
+            }
+        }
+
+        private MailMessage CreateMail (CompanyCredentials company, bool isAtt)
+        {
+            var companyPath = String.Format("{0}/{1}", rootPath, company.Name);
+
+            MailMessage mail = new MailMessage();
+
+            mail.From = new MailAddress(userName);
+            mail.To.Add(company.Email);
+            mail.Subject = SubjectEmail(company.SubjectEmail);
+            mail.Body = _fileReader.GetEmailText(companyPath);
+
+            var zipPath = String.Format("{0}/VladimirVrucinicDoc.zip", companyPath);
+            mail.Attachments.Add(new Attachment(zipPath));
+            return mail;
+        }
+        private string SubjectEmail(string subject)
+        {
+            if (String.IsNullOrEmpty(subject))
+            {
+                return "Vladimir Vrucinic - Software Developer job";
+            }
+            else
+            {
+                return subject;
             }
         }
     }

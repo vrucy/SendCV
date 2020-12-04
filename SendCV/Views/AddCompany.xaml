@@ -21,18 +21,16 @@
     </UserControl.Resources>
     <Grid   >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="64"/>-->
-            <!--<RowDefinition Height="40"/>-->
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="auto"/>-->
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*" MinHeight="150"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0">
-
+        <StackPanel Grid.Row="0" Grid.Column="0" >
             <syncfusion:SfMaskedEdit
                 Watermark="Email"
                 Margin="10"
@@ -87,22 +85,9 @@
                          UpdateSourceTrigger=PropertyChanged,
                          ValidatesOnDataErrors=True}" ItemsSource="{Binding TypesForSendEmail}"
                                 AllowMultiSelect="False" 
-                               x:Name="SendButton" Height="35" Width="175" ></syncfusion:ComboBoxAdv>
+                               x:Name="SendButton"  ></syncfusion:ComboBoxAdv>
 
-        </StackPanel>
-        <Button Content="Add" Grid.Column="0" Height="20" Grid.Row="1" VerticalAlignment="Bottom" Margin="24,0,35,10" Command="{Binding AddCompanyCommand}">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Error}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="True"/>
-                            <Setter Property="BorderBrush" Value="Red"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+        </StackPanel >
 
         <syncfusion:SfDataGrid Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Companies}" 
             AutoGenerateColumns="False" AllowSorting="False" x:Name="dataGrid"
@@ -121,13 +106,11 @@
                 <syncfusion:GridTextColumn HeaderText="Type" MappingName="SelectedTypeEmail"/>
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
-
-        <Button Content="Send" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="29" Width="50" Grid.Column="1" Command="{Binding SendMailCommand}" Margin="10" />
-
-        <Button Content="Delete" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.Row="1" Grid.Column="1 
-                " Width="115" Command="{Binding DeleteCompanyCommand}" />
         
-        <Button Content="Add" Grid.Column="0" Height="20" Grid.Row="1" VerticalAlignment="Bottom" Margin="24,0,35,10" Command="{Binding AddCompanyCommand}">
+        <Button Content="Send" Grid.Row="1" HorizontalAlignment="Right"  Height="29" Width="50" Grid.Column="1" Command="{Binding SendMailCommand}" Margin="15"/>
+
+        <Button Content="Delete" Height="20" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Width="115" Command="{Binding DeleteCompanyCommand}" Margin="15"/>
+        <Button Content="Add" Grid.Column="0" Height="20" Grid.Row="1" VerticalAlignment="Center" Command="{Binding AddCompanyCommand}" Margin="15" Width="115">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>

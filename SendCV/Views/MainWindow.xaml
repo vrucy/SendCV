@@ -15,18 +15,18 @@
             <views:EmailCredentialsPage/>
         </DataTemplate>
     </Window.Resources>
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" >
+    <Grid HorizontalAlignment="Center" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <!--<ColumnDefinition Width="*"/>-->
+            <ColumnDefinition Width="*"/>
+            <!--<ColumnDefinition Width="auto"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
             <!--<RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
-        <ContentControl Content="{Binding SelectedViewModel}" Grid.Row="1" />
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
+        <ContentControl Content="{Binding SelectedViewModel}"  Grid.Row="1"/>
+        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Add Company" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="AddCompany"/>
             <Button Content="Table" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="Table"/>
             <Button Content="Email Credentials" Margin="10" Width="100"  Height="30" Command="{Binding UpdateViewCommand}" CommandParameter="EmailCredentials"/>
